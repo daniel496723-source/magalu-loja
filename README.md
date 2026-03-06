@@ -1,54 +1,44 @@
-# 🛒 Magalu E-commerce
+# 🛒 Magalu Clone v2.0
 
-Loja virtual estilo Magazine Luiza com 60 produtos, carrinho, favoritos e conta de usuário.
+Clone completo do Magazine Luiza com imagens reais, descrições detalhadas e carrinho funcional.
+
+## 📁 Estrutura de arquivos
+
+```
+magalu-loja/
+├── index.html       # Página principal (home)
+├── produto.html     # Página de produto individual
+├── style.css        # Estilos completos
+├── app.js           # Lógica, produtos e carrinho
+├── server.js        # Servidor Express para Railway
+├── package.json     # Dependências
+└── railway.toml     # Config de deploy
+```
 
 ## 🚀 Deploy no Railway
 
-### Passo a passo completo:
+1. Suba todos os arquivos no seu repositório GitHub
+2. No Railway, clique em **Deploy from GitHub repo**
+3. Selecione o repositório
+4. Deploy automático! ✅
 
-**1. Crie uma conta gratuita**
-- Acesse [railway.app](https://railway.app) e clique em **"Login"**
-- Entre com sua conta do **GitHub** (obrigatório)
+## 🛍️ Produtos incluídos (12 itens)
 
-**2. Suba o código no GitHub**
-- Acesse [github.com](https://github.com) → **"New repository"**
-- Nomeie como `magalu-loja` → **"Create repository"**
-- Faça upload dos arquivos: `server.js`, `produto.html`, `package.json`, `.gitignore`
-  - Clique em **"uploading an existing file"**
-  - Arraste todos os arquivos e confirme
-
-**3. Deploy no Railway**
-- No Railway, clique em **"New Project"**
-- Selecione **"Deploy from GitHub repo"**
-- Escolha o repositório `magalu-loja`
-- Railway detecta automaticamente que é Node.js e faz o deploy!
-
-**4. Seu site estará online em ~2 minutos**
-- URL gerada automaticamente: `https://magalu-loja-production.up.railway.app`
-
-## 🖥️ Rodar localmente
-
-```bash
-node server.js
-```
-Acesse: http://localhost:3000
-
-## 📦 Estrutura
-
-```
-server.js      → Backend Node.js + catálogo de 60 produtos
-produto.html   → Página de produto individual
-package.json   → Configuração do projeto
-```
+- **Smartphones**: iPhone 15 Pro Max, Samsung Galaxy S24 Ultra, Motorola Edge 50 Pro, Xiaomi 14 Ultra
+- **Notebooks**: Dell XPS 15 OLED, MacBook Pro 14" M3 Pro
+- **Smart TVs**: LG OLED evo C3 65", Samsung Neo QLED 8K 75"
+- **Games**: PS5 Slim, Xbox Series X
+- **Áudio**: Sony WH-1000XM5
+- **Wearables**: Apple Watch Series 9
 
 ## ✨ Funcionalidades
 
-- 60 produtos em 10 categorias
-- Imagens SVG geradas localmente (nunca quebram)
-- Busca por nome e categoria
-- Carrinho de compras
-- Lista de favoritos
-- Conta de usuário com login
-- Cálculo de frete por CEP
-- Especificações únicas por produto
-- Troca de imagem por cor selecionada
+- ✅ Carousel hero com 4 slides automáticos
+- ✅ Filtro por categoria (clicando na nav ou nas categorias)
+- ✅ Busca em tempo real
+- ✅ Carrinho lateral com localStorage
+- ✅ Contador regressivo de oferta do dia
+- ✅ Página de produto com galeria, tabs, avaliações e specs
+- ✅ Cálculo de frete simulado
+- ✅ Totalmente responsivo (mobile, tablet, desktop)
+- ✅ Imagens reais via CDN oficial das marcas
