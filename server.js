@@ -2073,6 +2073,12 @@ ${nameLines}
     });
   }
 
+  // ── HEALTH CHECK (Railway) ──
+  if (p==='/health'||p==='/healthz'||p==='/ping') {
+    res.writeHead(200,{'Content-Type':'text/plain'});
+    res.end('OK'); return;
+  }
+
   // ── ROTAS HTML ──
   if (method==='GET' && p==='/login')      return htmlResp(res, pageLogin());
   if (method==='GET' && p==='/favoritos')  return htmlResp(res, pageFavoritos(token));
