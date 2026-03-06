@@ -1023,153 +1023,127 @@ function pageLogin(msg='') {
   return `<!DOCTYPE html><html lang="pt-br"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Identificação | Magalu</title>
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f0f3f8;min-height:100vh}
-  .lhdr{background:#0086ff;padding:14px 24px;display:flex;align-items:center;gap:12px}
-  .lhdr .logo{color:#fff;font-size:1.6rem;font-weight:900;letter-spacing:-1px;text-decoration:none}
-  .lhdr .logo span{color:#ffe55c}
-  .lhdr .back{margin-left:auto;color:rgba(255,255,255,.85);font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:4px}
-  .lhdr .back:hover{color:#fff}
-  .lwrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 52px);padding:24px 16px}
-  .lcard{background:#fff;border-radius:16px;box-shadow:0 4px 32px rgba(0,0,0,.1);width:100%;max-width:420px;overflow:hidden}
-  .ltabs{display:flex;border-bottom:2px solid #f0f3f8}
-  .ltab{flex:1;padding:16px;font-size:14px;font-weight:800;text-align:center;cursor:pointer;color:#666;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s}
-  .ltab.active{color:#0086ff;border-bottom-color:#0086ff}
-  .ltab:hover:not(.active){background:#f7f9fc;color:#0086ff}
-  .lpanel{padding:28px;display:none}.lpanel.active{display:block}
-  .lp-title{font-size:20px;font-weight:900;color:#222;margin-bottom:6px}
-  .lp-sub{font-size:13px;color:#888;margin-bottom:24px}
-  .fgrp{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
-  .fgrp label{font-size:11px;font-weight:800;color:#666;text-transform:uppercase;letter-spacing:.5px}
-  .fgrp input{border:1.5px solid #ddd;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s,box-shadow .2s}
-  .fgrp input:focus{border-color:#0086ff;box-shadow:0 0 0 3px rgba(0,134,255,.1)}
-  .eyw{position:relative}.eyw input{padding-right:44px}
-  .eybtn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:17px;color:#aaa}
-  .eybtn:hover{color:#666}
-  .btnverde{width:100%;background:#00a650;color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:900;cursor:pointer;transition:background .15s;letter-spacing:.2px}
-  .btnverde:hover{background:#008f44}
-  .btnverde:active{transform:scale(.99)}
-  .sep{display:flex;align-items:center;gap:10px;margin:18px 0;color:#ccc;font-size:12px}
-  .sep::before,.sep::after{content:'';flex:1;border-top:1px solid #eee}
-  .btngoogle{width:100%;background:#fff;color:#333;border:1.5px solid #ddd;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;font-family:inherit}
-  .btngoogle:hover{border-color:#4285f4;box-shadow:0 2px 12px rgba(66,133,244,.15);color:#4285f4}
-  .lnkp{font-size:12px;color:#0086ff;cursor:pointer;margin-top:10px;display:block;text-align:center}
+  body{font-family:'Nunito',sans-serif;background:#f0f3f6;min-height:100vh;display:flex;flex-direction:column}
+  .ltop{background:#0086ff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+  .ltop .logo{color:#fff;font-size:1.4rem;font-weight:900;letter-spacing:-1px}.ltop .logo span{color:#ffe55c}
+  .lback{color:rgba(255,255,255,.85);font-size:13px;font-weight:700;cursor:pointer;background:none;border:none;font-family:inherit}
+  .lback:hover{color:#fff}
+  .lmain{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 16px}
+  .lcard{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.1);padding:36px 40px;width:100%;max-width:460px}
+  .lcard h2{font-size:1.3rem;font-weight:900;color:#1e2428;margin-bottom:6px}
+  .lcard p{font-size:13px;color:#767676;margin-bottom:24px}
+  label{display:block;font-size:11px;font-weight:800;color:#444;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:16px}
+  input[type=text],input[type=email],input[type=password]{width:100%;border:1.5px solid #ddd;border-radius:8px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none;transition:border-color .2s;color:#1e2428}
+  input:focus{border-color:#0086ff;box-shadow:0 0 0 3px rgba(0,134,255,.1)}
+  .pwd-wr{position:relative}
+  .pwd-wr input{padding-right:44px}
+  .eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#999;padding:4px}
+  .hint{font-size:11px;color:#00a650;margin-top:6px;display:flex;align-items:center;gap:4px}
+  .hint.bad{color:#e53935}
+  .btnverde{width:100%;background:#00a650;color:#fff;border:none;border-radius:10px;padding:14px;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;margin-top:24px;transition:background .15s}
+  .btnverde:hover{background:#007a3b}
+  .divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:#bbb;font-size:12px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:#eee}
+  .btn-google{width:100%;background:#fff;border:1.5px solid #ddd;border-radius:10px;padding:12px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .15s;color:#444}
+  .btn-google:hover{background:#f5f5f5}
+  .lnkp{display:block;text-align:center;margin-top:20px;color:#0086ff;font-size:13px;font-weight:700;cursor:pointer}
   .lnkp:hover{text-decoration:underline}
-  .msgbox{padding:11px 14px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-  .msgbox.ok{background:#e6f9ef;color:#007a3b;border:1px solid #b2e8c8}
-  .msgbox.err{background:#fdf0f0;color:#c62828;border:1px solid #f8c4c4}
-  .passrules{font-size:11px;color:#aaa;margin-top:-10px;margin-bottom:14px;padding-left:2px}
-  @media(max-width:480px){.lcard{border-radius:12px}.lpanel{padding:20px}}
+  .errmsg{background:#fde8e8;color:#c62828;border-radius:8px;padding:10px 14px;font-size:13px;margin-top:12px;display:none}
   </style></head><body>
-  <div class="lhdr">
-    <a class="logo" href="/">ma<span>ga</span>lu</a>
-    <span style="color:rgba(255,255,255,.6);font-size:13px">/ Identificação</span>
-    <a class="back" href="/">← Voltar à loja</a>
+  <div class="ltop">
+    <a class="logo" href="/">magalu<span>.</span></a>
+    <button class="lback" onclick="location.href='/'">← Voltar à loja</button>
   </div>
-  <div class="lwrap">
+  <div class="lmain">
     <div class="lcard">
-      <div class="ltabs">
-        <button class="ltab active" id="tab-reg" onclick="switchTab('reg')">Criar conta</button>
-        <button class="ltab" id="tab-login" onclick="switchTab('login')">Já tenho conta</button>
+      <h2>Criar minha conta</h2>
+      <p>Cadastre-se e aproveite as melhores ofertas</p>
+      <div class="errmsg" id="msg-reg"></div>
+      <label>Nome completo</label>
+      <input type="text" id="r-name" placeholder="Seu nome completo" autocomplete="name"/>
+      <label>E-mail</label>
+      <input type="email" id="r-email" placeholder="seuemail@exemplo.com" autocomplete="email"/>
+      <label>CPF</label>
+      <input type="text" id="r-cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)"/>
+      <label>Senha</label>
+      <div class="pwd-wr">
+        <input type="password" id="r-pass" placeholder="Mínimo 6 caracteres" oninput="checkPass(this)"/>
+        <button class="eye" onclick="togglePwd('r-pass',this)" type="button">👁</button>
       </div>
-
-      <!-- CRIAR CONTA -->
-      <div class="lpanel active" id="panel-reg">
-        <div class="lp-title">Criar minha conta</div>
-        <div class="lp-sub">Cadastre-se e aproveite as melhores ofertas</div>
-        <div id="msg-reg"></div>
-        <div class="fgrp"><label>Nome completo</label><input type="text" id="reg-name" placeholder="Seu nome completo" autocomplete="name"/></div>
-        <div class="fgrp"><label>E-mail</label><input type="email" id="reg-email" placeholder="seuemail@exemplo.com" autocomplete="email"/></div>
-        <div class="fgrp"><label>CPF</label><input type="text" id="reg-cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)"/></div>
-        <div class="fgrp"><label>Senha</label>
-          <div class="eyw"><input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/><button class="eybtn" onclick="togglePwd('reg-pass')">👁</button></div>
-        </div>
-        <div class="passrules">🔒 Use pelo menos 6 caracteres com letras e números</div>
-        <button class="btnverde" onclick="doRegister()">Criar conta</button>
-        <div class="sep">ou</div>
-        <button class="btngoogle" onclick="googleAuth('reg')">
-          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.83l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          Cadastrar com Google
-        </button>
-        <a class="lnkp" onclick="switchTab('login')">Já tenho conta? Entrar →</a>
-      </div>
-
-      <!-- LOGIN -->
-      <div class="lpanel" id="panel-login">
-        <div class="lp-title">Bem-vindo(a) de volta!</div>
-        <div class="lp-sub">Entre com seu e-mail e senha</div>
-        <div id="msg-login"></div>
-        <div class="fgrp"><label>E-mail</label><input type="email" id="login-email" placeholder="seuemail@exemplo.com" autocomplete="email"/></div>
-        <div class="fgrp"><label>Senha</label>
-          <div class="eyw"><input type="password" id="login-pass" placeholder="Sua senha" autocomplete="current-password"/><button class="eybtn" onclick="togglePwd('login-pass')">👁</button></div>
-        </div>
-        <button class="btnverde" onclick="doLogin()">Entrar</button>
-        <div class="sep">ou</div>
-        <button class="btngoogle" onclick="googleAuth('login')">
-          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.83l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          Entrar com Google
-        </button>
-        <a class="lnkp" onclick="showMsg('login','ok','📧 Enviamos um link de recuperação para seu e-mail!')">Esqueci minha senha</a>
-        <a class="lnkp" onclick="switchTab('reg')" style="color:#666;margin-top:4px">Não tenho conta → Criar agora</a>
-      </div>
+      <div class="hint" id="pass-hint">🔒 Use pelo menos 6 caracteres com letras e números</div>
+      <button class="btnverde" id="btn-reg" onclick="doRegister()">Criar conta</button>
+      <div class="divider">ou</div>
+      <button class="btn-google" onclick="doGoogle()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.8 2.5 30.2 0 24 0 14.8 0 6.9 5.4 3 13.3l7.8 6C12.7 13.2 17.9 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8C43.7 37.5 46.5 31.5 46.5 24.5z"/><path fill="#FBBC05" d="M10.8 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7L2.5 13.3A23.9 23.9 0 0 0 0 24c0 3.9.9 7.5 2.5 10.7l8.3-6z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.2-7.7 2.2-6.1 0-11.3-3.7-13.2-9l-8.3 6C6.9 42.6 14.8 48 24 48z"/></svg>
+        Cadastrar com Google
+      </button>
+      <a class="lnkp" onclick="goLogin()">Já tenho conta? Entrar →</a>
     </div>
   </div>
-  <div id="_toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 24px;border-radius:50px;font-size:14px;font-weight:700;opacity:0;transition:opacity .3s;z-index:9999;pointer-events:none"></div>
   <script>
-  function switchTab(t){
-    document.querySelectorAll('.ltab,.lpanel').forEach(e=>e.classList.remove('active'));
-    document.getElementById('tab-'+t).classList.add('active');
-    document.getElementById('panel-'+t).classList.add('active');
-  }
-  function togglePwd(id){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';}
-  function maskCPF(el){let v=el.value.replace(/\D/g,'').slice(0,11);if(v.length>9)v=v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9);else if(v.length>6)v=v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);else if(v.length>3)v=v.slice(0,3)+'.'+v.slice(3);el.value=v;}
-  function showMsg(panel,type,text){const el=document.getElementById('msg-'+panel);el.innerHTML='<div class="msgbox '+type+'">'+text+'</div>';}
-  function toast(msg){const el=document.getElementById('_toast');el.textContent=msg;el.style.opacity='1';setTimeout(()=>el.style.opacity='0',3000);}
-  function saveToken(t){document.cookie='magalu_token='+t+';path=/;max-age=2592000';try{localStorage.setItem('magalu_token',t);}catch(e){}}
+  function maskCPF(i){let v=i.value.replace(/\D/g,'').slice(0,11);v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');i.value=v;}
+  function togglePwd(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'👁':'🙈';}
+  function checkPass(i){const h=document.getElementById('pass-hint');if(i.value.length<6){h.className='hint bad';h.textContent='🔒 Mínimo 6 caracteres';}else{h.className='hint';h.textContent='✅ Senha válida';}}
+  function showErr(id,msg){const el=document.getElementById(id);el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',4000);}
   async function doRegister(){
-    const name=document.getElementById('reg-name').value.trim();
-    const email=document.getElementById('reg-email').value.trim();
-    const pass=document.getElementById('reg-pass').value;
-    if(!name){showMsg('reg','err','⚠️ Digite seu nome completo');return;}
-    if(!email||!email.includes('@')){showMsg('reg','err','⚠️ Digite um e-mail válido');return;}
-    if(pass.length<6){showMsg('reg','err','⚠️ Senha deve ter pelo menos 6 caracteres');return;}
-    const btn=document.querySelector('#panel-reg .btnverde');
+    const name=document.getElementById('r-name').value.trim();
+    const email=document.getElementById('r-email').value.trim();
+    const pass=document.getElementById('r-pass').value;
+    if(!name||!email||!pass){showErr('msg-reg','Preencha todos os campos');return;}
+    if(pass.length<6){showErr('msg-reg','Senha deve ter mínimo 6 caracteres');return;}
+    const btn=document.getElementById('btn-reg');
     btn.textContent='Criando conta...';btn.disabled=true;
     try{
       const r=await fetch('/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,password:pass})});
       const d=await r.json();
-      if(d.success){saveToken(d.token);showMsg('reg','ok','✅ Conta criada! Redirecionando...');setTimeout(()=>location.href='/',1000);}
-      else showMsg('reg','err','⚠️ '+(d.error||'Erro ao criar conta'));
-    }catch(e){showMsg('reg','err','⚠️ Erro de conexão');}
-    btn.textContent='Criar conta';btn.disabled=false;
+      if(d.success){document.cookie='token='+d.token+';path=/;max-age=2592000';location.href='/';}
+      else{showErr('msg-reg',d.error||'Erro ao criar conta');btn.textContent='Criar conta';btn.disabled=false;}
+    }catch(e){showErr('msg-reg','Erro de conexão');btn.textContent='Criar conta';btn.disabled=false;}
+  }
+  function goLogin(){
+    const box=document.querySelector('.lcard');
+    box.innerHTML=\`<h2>Entrar na minha conta</h2>
+    <p>Bem-vindo de volta!</p>
+    <div class="errmsg" id="msg-login"></div>
+    <label>E-mail</label>
+    <input type="email" id="l-email" placeholder="seuemail@exemplo.com"/>
+    <label>Senha</label>
+    <div class="pwd-wr">
+      <input type="password" id="l-pass" placeholder="Sua senha"/>
+      <button class="eye" onclick="togglePwd('l-pass',this)" type="button">👁</button>
+    </div>
+    <button class="btnverde" id="btn-login" onclick="doLogin()">Entrar</button>
+    <div class="divider">ou</div>
+    <button class="btn-google" onclick="doGoogle()">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.8 2.5 30.2 0 24 0 14.8 0 6.9 5.4 3 13.3l7.8 6C12.7 13.2 17.9 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8C43.7 37.5 46.5 31.5 46.5 24.5z"/><path fill="#FBBC05" d="M10.8 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7L2.5 13.3A23.9 23.9 0 0 0 0 24c0 3.9.9 7.5 2.5 10.7l8.3-6z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.2-7.7 2.2-6.1 0-11.3-3.7-13.2-9l-8.3 6C6.9 42.6 14.8 48 24 48z"/></svg>
+      Entrar com Google
+    </button>
+    <a class="lnkp" onclick="location.reload()">Não tenho conta → Criar agora</a>\`;
   }
   async function doLogin(){
-    const email=document.getElementById('login-email').value.trim();
-    const pass=document.getElementById('login-pass').value;
-    if(!email||!pass){showMsg('login','err','⚠️ Preencha e-mail e senha');return;}
-    const btn=document.querySelector('#panel-login .btnverde');
+    const email=document.getElementById('l-email').value.trim();
+    const pass=document.getElementById('l-pass').value;
+    if(!email||!pass){showErr('msg-login','Preencha todos os campos');return;}
+    const btn=document.getElementById('btn-login');
     btn.textContent='Entrando...';btn.disabled=true;
     try{
       const r=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
       const d=await r.json();
-      if(d.success){saveToken(d.token);showMsg('login','ok','✅ Bem-vindo(a)! Redirecionando...');setTimeout(()=>location.href='/',1000);}
-      else showMsg('login','err','⚠️ '+(d.error||'E-mail ou senha incorretos'));
-    }catch(e){showMsg('login','err','⚠️ Erro de conexão');}
-    btn.textContent='Entrar';btn.disabled=false;
+      if(d.success){document.cookie='token='+d.token+';path=/;max-age=2592000';location.href='/';}
+      else{showErr('msg-login',d.error||'E-mail ou senha incorretos');btn.textContent='Entrar';btn.disabled=false;}
+    }catch(e){showErr('msg-login','Erro de conexão');btn.textContent='Entrar';btn.disabled=false;}
   }
-  async function googleAuth(type){
-    const name=type==='reg'?prompt('Nome completo:'):null;
-    const email=prompt('E-mail Google:');
-    if(!email)return;
-    try{
-      const r=await fetch('/api/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name||email.split('@')[0],email,provider:'google'})});
-      const d=await r.json();
-      if(d.success){saveToken(d.token);toast('✅ Login realizado!');setTimeout(()=>location.href='/',900);}
-      else showMsg(type==='reg'?'reg':'login','err','⚠️ '+(d.error||'Erro'));
-    }catch(e){showMsg(type==='reg'?'reg':'login','err','⚠️ Erro de conexão');}
+  async function doGoogle(){
+    const name=prompt('Seu nome completo:');
+    const email=prompt('Seu e-mail Google:');
+    if(!name||!email)return;
+    const r=await fetch('/api/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,avatar:''})});
+    const d=await r.json();
+    if(d.success){document.cookie='token='+d.token+';path=/;max-age=2592000';location.href='/';}
   }
-  // Auto-focus
-  document.getElementById('reg-name').focus();
+  document.getElementById('r-name').focus();
   </script></body></html>`;
 }
 
@@ -1396,6 +1370,42 @@ const server = http.createServer(async (req, res) => {
     const item = CATALOG.find(c=>c.id===pid);
     if (!item) { res.writeHead(404); res.end('not found'); return; }
 
+    // Try to proxy the real product image
+    const imgUrl = item.img;
+    if (imgUrl && imgUrl.startsWith('http')) {
+      try {
+        const parsed2 = new URL(imgUrl);
+        const lib2 = parsed2.protocol === 'https:' ? https : require('http');
+        const opts2 = {
+          hostname: parsed2.hostname,
+          path: parsed2.pathname + parsed2.search,
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+            'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.8',
+            'Referer': 'https://www.google.com/',
+          },
+          timeout: 5000,
+        };
+        const proxyReq2 = lib2.get(opts2, (proxyRes2) => {
+          if (proxyRes2.statusCode >= 200 && proxyRes2.statusCode < 300) {
+            const ct = proxyRes2.headers['content-type'] || 'image/jpeg';
+            cors(res);
+            res.writeHead(200, {'Content-Type': ct, 'Cache-Control': 'public,max-age=86400'});
+            proxyRes2.pipe(res);
+          } else if (proxyRes2.statusCode === 301 || proxyRes2.statusCode === 302) {
+            const loc = proxyRes2.headers['location'];
+            if (loc) { res.writeHead(302,{'Location':'/pimg/'+pid+'?_r='+encodeURIComponent(loc)}); res.end(); }
+            else { serveSVG(); }
+          } else { serveSVG(); }
+        });
+        proxyReq2.on('error', ()=>serveSVG());
+        proxyReq2.on('timeout', ()=>{ proxyReq2.destroy(); serveSVG(); });
+        return;
+      } catch(e) { serveSVG(); return; }
+    } else { serveSVG(); return; }
+
+    function serveSVG() {
     const disc     = Math.round((1 - item.price/item.orig)*100);
     const pixPrice = (Math.round(item.price*0.9*100)/100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
     const safeN    = (item.name.length>36 ? item.name.slice(0,35)+'…' : item.name).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -1978,10 +1988,8 @@ ${nameLines}
     cors(res);
     res.writeHead(200,{'Content-Type':'image/svg+xml','Cache-Control':'public,max-age=3600'});
     res.end(svg);
-    return;
-  }
-
-
+    }
+  
   // ── IMAGE PROXY ──
   if (method==='GET' && p==='/img') {
     const imgUrl = q.url;
@@ -2005,6 +2013,7 @@ ${nameLines}
       pr.on('error', ()=>{ res.writeHead(502); res.end(); });
     } catch(e) { res.writeHead(400); res.end('bad url'); }
     return;
+  }
   }
 
   // ── CATALOG API ──
