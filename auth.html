@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastrar - Magazine Luiza</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+.auth-page { min-height: 100vh; background: #f5f5f5; display: flex; flex-direction: column; }
+.auth-header { background: #0086ff; padding: 14px 24px; display: flex; align-items: center; gap: 16px; }
+.auth-header .logo-text { color:#fff; font-size:22px; font-weight:900; }
+.auth-header .logo-text span { color:#ffd100; }
+.auth-wrap { flex:1; display:flex; align-items:center; justify-content:center; padding:32px 16px; }
+.auth-card { background:#fff; border-radius:14px; box-shadow:0 4px 24px rgba(0,0,0,.12); width:100%; max-width:440px; overflow:hidden; }
+.auth-card-header { background:linear-gradient(135deg,#0086ff,#0055cc); padding:28px 32px 24px; color:#fff; text-align:center; }
+.auth-card-header .lu-img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.4); margin-bottom:12px; }
+.auth-card-header h1 { font-size:22px; font-weight:900; margin-bottom:4px; }
+.auth-card-header p { font-size:13px; opacity:.85; }
+.auth-card-body { padding:28px 32px; }
+
+/* Google button */
+.btn-google {
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  width:100%; padding:13px; border:2px solid #ddd; border-radius:10px;
+  background:#fff; color:#333; font-size:15px; font-weight:700;
+  cursor:pointer; font-family:'Nunito',sans-serif; transition:all .2s;
+  margin-bottom:16px;
+}
+.btn-google:hover { border-color:#0086ff; background:#f0f7ff; }
+.btn-google img { width:22px; height:22px; }
+
+.divider { display:flex; align-items:center; gap:10px; margin:16px 0; color:#999; font-size:13px; }
+.divider::before, .divider::after { content:''; flex:1; height:1px; background:#eee; }
+
+/* Form */
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:13px; font-weight:700; color:#555; margin-bottom:5px; }
+.form-group input {
+  width:100%; border:1px solid #ddd; border-radius:8px; padding:11px 14px;
+  font-size:14px; font-family:'Nunito',sans-serif; outline:none; transition:border-color .2s;
+}
+.form-group input:focus { border-color:#0086ff; box-shadow:0 0 0 3px rgba(0,134,255,.1); }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+.btn-register {
+  width:100%; background:#0086ff; color:#fff; border:none; border-radius:10px;
+  padding:14px; font-size:15px; font-weight:800; cursor:pointer;
+  font-family:'Nunito',sans-serif; transition:background .2s; margin-top:4px;
+}
+.btn-register:hover { background:#0066cc; }
+
+.auth-terms { font-size:11px; color:#999; text-align:center; margin-top:12px; line-height:1.5; }
+.auth-terms a { color:#0086ff; }
+
+.auth-login { text-align:center; font-size:13px; color:#666; padding:16px 32px; border-top:1px solid #f0f0f0; }
+.auth-login a { color:#0086ff; font-weight:700; }
+
+/* Success screen */
+.success-screen { display:none; padding:32px; text-align:center; }
+.success-screen .check { font-size:56px; margin-bottom:16px; }
+.success-screen h2 { font-size:22px; font-weight:900; color:#333; margin-bottom:8px; }
+.success-screen p { color:#666; font-size:14px; margin-bottom:20px; }
+.user-preview { display:flex; align-items:center; gap:12px; background:#f8f9fa; border-radius:10px; padding:14px; margin-bottom:20px; text-align:left; }
+.user-preview img { width:52px; height:52px; border-radius:50%; object-fit:cover; }
+.user-preview .info h4 { font-size:15px; font-weight:800; }
+.user-preview .info p { font-size:12px; color:#888; }
+.btn-continue { background:#0086ff; color:#fff; border:none; border-radius:10px; padding:13px 32px; font-size:14px; font-weight:800; cursor:pointer; font-family:'Nunito',sans-serif; }
+
+/* Loading */
+.loading-overlay { display:none; position:fixed; inset:0; background:rgba(255,255,255,.85); z-index:999; align-items:center; justify-content:center; flex-direction:column; gap:12px; }
+.loading-overlay.show { display:flex; }
+.spinner { width:40px; height:40px; border:4px solid #eee; border-top-color:#0086ff; border-radius:50%; animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-header">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+      <img src="https://logodownload.org/wp-content/uploads/2015/12/magazine-luiza-logo.png" style="height:36px;object-fit:contain" alt="Magalu" onerror="this.style.display='none'">
+      <span class="logo-text">magazine<span>luiza</span></span>
+    </a>
+  </div>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <img class="lu-img" 
+          src="https://upload.wikimedia.org/wikipedia/pt/thumb/d/dc/Lu_do_Magalu.png/220px-Lu_do_Magalu.png" 
+          alt="Lu do Magalu"
+          onerror="this.src='https://i.imgur.com/sQxuqJI.png'">
+        <h1>Crie sua conta</h1>
+        <p>Rápido, fácil e com os melhores descontos 💙</p>
+      </div>
+
+      <div class="auth-card-body" id="formBody">
+        <!-- Google -->
+        <button class="btn-google" onclick="signInWithGoogle()">
+          <img src="https://www.google.com/favicon.ico" alt="Google">
+          Cadastrar com Google
+        </button>
+
+        <div class="divider">ou preencha seus dados</div>
+
+        <!-- Manual form -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="firstName" placeholder="João">
+          </div>
+          <div class="form-group">
+            <label>Sobrenome</label>
+            <input type="text" id="lastName" placeholder="Silva">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" id="emailInput" placeholder="joao@email.com">
+        </div>
+        <div class="form-group">
+          <label>CPF</label>
+          <input type="text" id="cpfInput" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)">
+        </div>
+        <div class="form-group">
+          <label>Celular</label>
+          <input type="text" id="phoneInput" placeholder="(11) 99999-9999" maxlength="15" oninput="maskPhone(this)">
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" id="passInput" placeholder="Mínimo 6 caracteres">
+        </div>
+
+        <button class="btn-register" onclick="registerManual()">Criar minha conta</button>
+
+        <p class="auth-terms">
+          Ao se cadastrar você concorda com os
+          <a href="#">Termos de Uso</a> e
+          <a href="#">Política de Privacidade</a> do Magazine Luiza
+        </p>
+      </div>
+
+      <!-- Success screen -->
+      <div class="success-screen" id="successScreen">
+        <div class="check">🎉</div>
+        <h2>Bem-vindo(a) ao Magalu!</h2>
+        <p>Sua conta foi criada com sucesso. Aproveite nossas ofertas!</p>
+        <div class="user-preview" id="userPreview"></div>
+        <button class="btn-continue" onclick="window.location.href='index.html'">Ir às compras 🛒</button>
+      </div>
+
+      <div class="auth-login">
+        Já tem conta? <a href="#" onclick="alert('Login: use o botão Google acima ou entre com seu e-mail.')">Entrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <p style="font-weight:700;color:#333">Conectando com Google...</p>
+</div>
+
+<!-- Google Sign-In SDK -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+// ─── GOOGLE SIGN-IN ────────────────────────────────────
+// NOTA: Substitua CLIENT_ID pelo seu Google OAuth Client ID
+// Crie em: https://console.cloud.google.com/apis/credentials
+const GOOGLE_CLIENT_ID = 'SEU_GOOGLE_CLIENT_ID_AQUI.apps.googleusercontent.com';
+
+function signInWithGoogle() {
+  const loadingEl = document.getElementById('loadingOverlay');
+  loadingEl.classList.add('show');
+
+  // Inicializa o Google Identity Services
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleCredential,
+    auto_select: false,
+    cancel_on_tap_outside: true,
+  });
+
+  google.accounts.id.prompt((notification) => {
+    loadingEl.classList.remove('show');
+    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+      // Fallback: abrir popup
+      google.accounts.id.renderButton(
+        document.createElement('div'),
+        { theme: 'outline', size: 'large' }
+      );
+      // Usa o One Tap como fallback
+      showManualGoogleFallback();
+    }
+  });
+}
+
+function showManualGoogleFallback() {
+  // Se o popup Google não abrir (ex: CLIENT_ID não configurado),
+  // simula o fluxo com dados de exemplo para demonstração
+  const demoUser = {
+    name: 'Usuário Google',
+    email: 'usuario@gmail.com',
+    picture: 'https://lh3.googleusercontent.com/a/default-user=s96-c',
+    sub: 'demo_' + Date.now(),
+    given_name: 'Usuário',
+    family_name: 'Google',
+    provider: 'google',
+  };
+  saveUserAndShowSuccess(demoUser);
+}
+
+function handleGoogleCredential(response) {
+  document.getElementById('loadingOverlay').classList.remove('show');
+  // Decodifica o JWT do Google
+  const payload = parseJwt(response.credential);
+  const user = {
+    name: payload.name,
+    email: payload.email,
+    picture: payload.picture,
+    sub: payload.sub,
+    given_name: payload.given_name,
+    family_name: payload.family_name,
+    provider: 'google',
+    token: response.credential,
+    createdAt: new Date().toISOString(),
+  };
+  saveUserAndShowSuccess(user);
+}
+
+function parseJwt(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+    '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+  return JSON.parse(jsonPayload);
+}
+
+// ─── CADASTRO MANUAL ───────────────────────────────────
+function registerManual() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName  = document.getElementById('lastName').value.trim();
+  const email     = document.getElementById('emailInput').value.trim();
+  const cpf       = document.getElementById('cpfInput').value.trim();
+  const phone     = document.getElementById('phoneInput').value.trim();
+  const pass      = document.getElementById('passInput').value;
+
+  if (!firstName || !lastName) return showError('Por favor, informe seu nome completo.');
+  if (!email || !email.includes('@')) return showError('Informe um e-mail válido.');
+  if (cpf.replace(/\D/g,'').length !== 11) return showError('Informe um CPF válido.');
+  if (phone.replace(/\D/g,'').length < 10) return showError('Informe um celular válido.');
+  if (pass.length < 6) return showError('A senha deve ter no mínimo 6 caracteres.');
+
+  const user = {
+    name: firstName + ' ' + lastName,
+    given_name: firstName,
+    family_name: lastName,
+    email,
+    cpf,
+    phone,
+    picture: `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName+'+'+lastName)}&background=0086ff&color=fff&size=128`,
+    provider: 'manual',
+    createdAt: new Date().toISOString(),
+  };
+  saveUserAndShowSuccess(user);
+}
+
+// ─── SALVAR USUÁRIO ────────────────────────────────────
+function saveUserAndShowSuccess(user) {
+  // Salva no localStorage (persistente no navegador)
+  localStorage.setItem('magaluUser', JSON.stringify(user));
+
+  // Salva histórico de contas (múltiplos cadastros)
+  let accounts = JSON.parse(localStorage.getItem('magaluAccounts') || '[]');
+  const exists = accounts.find(a => a.email === user.email);
+  if (!exists) {
+    accounts.push(user);
+    localStorage.setItem('magaluAccounts', JSON.stringify(accounts));
+  }
+
+  showSuccess(user);
+}
+
+function showSuccess(user) {
+  document.getElementById('formBody').style.display = 'none';
+  const screen = document.getElementById('successScreen');
+  screen.style.display = 'block';
+
+  document.getElementById('userPreview').innerHTML = `
+    <img src="${user.picture}" alt="${user.name}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=0086ff&color=fff'">
+    <div class="info">
+      <h4>${user.name}</h4>
+      <p>${user.email}</p>
+      <p style="color:#27ae60;font-size:11px;margin-top:2px">✓ ${user.provider === 'google' ? 'Conta Google conectada' : 'Conta criada com sucesso'}</p>
+    </div>`;
+}
+
+function showError(msg) {
+  const existing = document.querySelector('.auth-error');
+  if (existing) existing.remove();
+  const err = document.createElement('div');
+  err.className = 'auth-error';
+  err.style.cssText = 'background:#fee;border:1px solid #fcc;border-radius:8px;padding:10px 14px;color:#c00;font-size:13px;font-weight:600;margin-bottom:12px;';
+  err.textContent = '⚠️ ' + msg;
+  document.querySelector('.btn-register').before(err);
+  setTimeout(() => err.remove(), 4000);
+}
+
+// ─── MÁSCARAS ──────────────────────────────────────────
+function maskCPF(el) {
+  let v = el.value.replace(/\D/g,'').slice(0,11);
+  if (v.length > 9) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9);
+  else if (v.length > 6) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);
+  else if (v.length > 3) v = v.slice(0,3)+'.'+v.slice(3);
+  el.value = v;
+}
+
+function maskPhone(el) {
+  let v = el.value.replace(/\D/g,'').slice(0,11);
+  if (v.length > 10) v = '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
+  else if (v.length > 6) v = '('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);
+  else if (v.length > 2) v = '('+v.slice(0,2)+') '+v.slice(2);
+  el.value = v;
+}
+
+// ─── VERIFICA SE JÁ LOGADO ─────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('magaluUser') || 'null');
+  if (user) {
+    // Já logado — vai direto para a home
+    document.getElementById('formBody').style.display = 'none';
+    showSuccess(user);
+  }
+});
+</script>
+</body>
+</html>

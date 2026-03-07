@@ -3,28 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magazine Luiza - Melhores Ofertas</title>
+<title>Magazine Luiza - Melhores Ofertas do Brasil</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<!-- HEADER -->
 <header>
   <div class="header-top">
     <div class="header-inner">
       <a href="index.html" class="logo">
-        <img src="https://logodownload.org/wp-content/uploads/2015/12/magazine-luiza-logo.png" alt="Magazine Luiza" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <span class="logo-fallback" style="display:none">magazine<br><span>luiza</span></span>
+        <img src="https://logodownload.org/wp-content/uploads/2015/12/magazine-luiza-logo.png" alt="Magazine Luiza" style="height:38px;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span style="display:none;color:#fff;font-weight:900;font-size:18px;background:#fff;color:#0086ff;padding:4px 10px;border-radius:6px">magazine<span style="color:#ffd100">luiza</span></span>
       </a>
-
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Buscar em Magazine Luiza" autocomplete="off">
         <button onclick="doSearch()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </button>
       </div>
-
       <div class="header-actions">
         <a class="header-action" href="#">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -34,26 +30,25 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
           <span>Meus</span><small>Pedidos</small>
         </a>
-        <a class="header-action" href="#">
+        <a class="header-action" id="userActionBtn" href="#">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>Entrar ou</span><small>Cadastrar</small>
+          <span>Cadastrar</span><small>ou Entrar</small>
         </a>
-        <a class="header-action cart-wrap" href="#">
+        <a class="header-action cart-wrap" href="#" onclick="openCart();return false;">
           <div class="cart-icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            <span class="badge" id="cartBadge">0</span>
+            <span class="badge" id="cartBadge" style="display:none">0</span>
           </div>
           <span>Meu</span><small>Carrinho</small>
         </a>
       </div>
     </div>
-
     <nav class="header-nav">
       <div class="header-nav-inner">
-        <div class="nav-item active">☰ Todas as Categorias</div>
+        <div class="nav-item active" onclick="filterCategory('all')">☰ Todas as Categorias</div>
         <div class="nav-item" onclick="filterCategory('smartphones')">📱 Smartphones</div>
         <div class="nav-item" onclick="filterCategory('notebooks')">💻 Notebooks</div>
-        <div class="nav-item" onclick="filterCategory('tvs')">📺 TVs</div>
+        <div class="nav-item" onclick="filterCategory('tvs')">📺 Smart TVs</div>
         <div class="nav-item" onclick="filterCategory('eletros')">🏠 Eletrodomésticos</div>
         <div class="nav-item" onclick="filterCategory('games')">🎮 Games</div>
         <div class="nav-item" onclick="filterCategory('audio')">🎧 Áudio</div>
@@ -64,85 +59,78 @@
   </div>
 </header>
 
-<!-- HERO CAROUSEL -->
 <section class="hero-section">
   <div class="hero-carousel">
     <div class="hero-slides" id="heroSlides">
-
-      <div class="hero-slide" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)">
+      <div class="hero-slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)">
         <div class="hero-content">
-          <div class="hero-tag">🔥 Mais Vendido</div>
+          <div class="hero-tag">🔥 80% OFF</div>
           <h1>iPhone 15 Pro Max<br><span>256GB Titânio Natural</span></h1>
-          <p>Chip A17 Pro, câmera 48MP com zoom óptico 5x, tela Super Retina XDR 6,7" e bateria que dura o dia todo</p>
+          <p>Chip A17 Pro 3nm · Câmera 48MP Zoom 5x · Tela 6,7" 120Hz · Titânio Aeroespacial</p>
           <div class="hero-prices">
             <span class="old-price">R$ 9.499,00</span>
-            <span class="new-price">R$ 7.499<sup>,00</sup></span>
-            <span class="installment">12x de R$ 624,91 sem juros no Cartão Luiza</span>
-            <span class="pix-price">💚 R$ 7.124,05 no Pix</span>
+            <span class="new-price">R$ 1.899<sup>,00</sup></span>
+            <span class="installment">12x de R$ 158,25 sem juros no Cartão Luiza</span>
+            <span class="pix-price">💚 R$ 1.804,05 no Pix</span>
           </div>
-          <button class="hero-btn" onclick="addToCart('iPhone 15 Pro Max 256GB',7499)">Comprar Agora</button>
+          <button class="hero-btn" onclick="addToCart('iPhone 15 Pro Max 256GB Titânio Natural Apple',1899,'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=800&hei=800&fmt=p-jpg&qlt=80')">Comprar Agora</button>
         </div>
         <div class="hero-img-wrap">
-          <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702708" alt="iPhone 15 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&q=80'">
+          <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=800&hei=800&fmt=p-jpg&qlt=80" alt="iPhone 15 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&q=80'">
         </div>
       </div>
-
-      <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a 0%,#1b263b 50%,#415a77 100%)">
+      <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1b263b,#415a77)">
         <div class="hero-content">
-          <div class="hero-tag">💻 Top em Notebooks</div>
-          <h1>Samsung Galaxy Book4<br><span>Ultra 16" Intel Core Ultra 9</span></h1>
-          <p>Processador Intel Core Ultra 9, 32GB LPDDR5, SSD 1TB NVMe, tela AMOLED 3K 120Hz e bateria 76Wh</p>
+          <div class="hero-tag">💻 78% OFF</div>
+          <h1>MacBook Pro 14"<br><span>M3 Pro 18GB 512GB</span></h1>
+          <p>Chip M3 Pro · 18GB Memória Unificada · Liquid Retina XDR 120Hz · Até 22h de bateria</p>
           <div class="hero-prices">
-            <span class="old-price">R$ 12.999,00</span>
-            <span class="new-price">R$ 8.999<sup>,00</sup></span>
-            <span class="installment">12x de R$ 749,91 sem juros no Cartão Luiza</span>
-            <span class="pix-price">💚 R$ 8.549,05 no Pix</span>
+            <span class="old-price">R$ 17.999,00</span>
+            <span class="new-price">R$ 3.999<sup>,00</sup></span>
+            <span class="installment">12x de R$ 333,25 sem juros no Cartão Luiza</span>
+            <span class="pix-price">💚 R$ 3.799,05 no Pix</span>
           </div>
-          <button class="hero-btn" onclick="addToCart('Samsung Galaxy Book4 Ultra',8999)">Comprar Agora</button>
+          <button class="hero-btn" onclick="addToCart('MacBook Pro 14 M3 Pro 18GB 512GB Preto Espacial',3999,'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202310?wid=800&hei=800&fmt=jpeg&qlt=90')">Comprar Agora</button>
         </div>
         <div class="hero-img-wrap">
-          <img src="https://images.samsung.com/is/image/samsung/p6pim/br/np960xma-kb1br/gallery/br-galaxy-book4-ultra-np960xma-np960xma-kb1br-thumb-539441268?$650_519_PNG$" alt="Samsung Galaxy Book4 Ultra" onerror="this.src='https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80'">
+          <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202310?wid=800&hei=800&fmt=jpeg&qlt=90" alt="MacBook Pro" onerror="this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80'">
         </div>
       </div>
-
-      <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00 0%,#3d1a00 50%,#7c3300 100%)">
+      <div class="hero-slide" style="background:linear-gradient(135deg,#1a0033,#3d0066,#660099)">
         <div class="hero-content">
-          <div class="hero-tag">🎮 Mundo Gamer</div>
-          <h1>PlayStation 5 Slim<br><span>Console + 2 Controles DualSense</span></h1>
-          <p>SSD ultrarrápido 1TB, resolução 8K, ray tracing, 120fps, retrocompatível com jogos PS4 e tempest 3D AudioTech</p>
+          <div class="hero-tag">🎮 79% OFF</div>
+          <h1>PlayStation 5 Slim<br><span>Console + DualSense</span></h1>
+          <p>SSD Ultrarrápido 825GB · Ray Tracing · 120fps · DualSense Feedback Tátil · Tempest 3D</p>
           <div class="hero-prices">
             <span class="old-price">R$ 4.799,00</span>
-            <span class="new-price">R$ 3.799<sup>,00</sup></span>
-            <span class="installment">12x de R$ 316,58 sem juros no Cartão Luiza</span>
-            <span class="pix-price">💚 R$ 3.609,05 no Pix</span>
+            <span class="new-price">R$ 999<sup>,00</sup></span>
+            <span class="installment">12x de R$ 83,25 sem juros no Cartão Luiza</span>
+            <span class="pix-price">💚 R$ 949,05 no Pix</span>
           </div>
-          <button class="hero-btn" onclick="addToCart('PlayStation 5 Slim + 2 Controles',3799)">Comprar Agora</button>
+          <button class="hero-btn" onclick="addToCart('PlayStation 5 Slim Console Disco 1TB + Controle DualSense Branco',999,'https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?%24facebook%24')">Comprar Agora</button>
         </div>
         <div class="hero-img-wrap">
           <img src="https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$" alt="PlayStation 5" onerror="this.src='https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&q=80'">
         </div>
       </div>
-
-      <div class="hero-slide" style="background:linear-gradient(135deg,#003300 0%,#004d00 50%,#006600 100%)">
+      <div class="hero-slide" style="background:linear-gradient(135deg,#001a00,#003300,#005500)">
         <div class="hero-content">
-          <div class="hero-tag">📺 Smart TVs</div>
-          <h1>LG OLED evo C3<br><span>65" 4K 120Hz Dolby Vision IQ</span></h1>
-          <p>Painel OLED auto-iluminado, processador α9 Gen6 AI, Dolby Vision IQ, Dolby Atmos, webOS 23 e Google Assistant</p>
+          <div class="hero-tag">📺 75% OFF</div>
+          <h1>LG OLED evo C3<br><span>65" 4K 120Hz Dolby Vision</span></h1>
+          <p>Painel OLED auto-iluminado · α9 Gen6 AI · Dolby Vision IQ · 4x HDMI 2.1 · Input lag 1ms</p>
           <div class="hero-prices">
             <span class="old-price">R$ 7.999,00</span>
-            <span class="new-price">R$ 4.999<sup>,00</sup></span>
-            <span class="installment">12x de R$ 416,58 sem juros no Cartão Luiza</span>
-            <span class="pix-price">💚 R$ 4.749,05 no Pix</span>
+            <span class="new-price">R$ 1.999<sup>,00</sup></span>
+            <span class="installment">12x de R$ 166,58 sem juros no Cartão Luiza</span>
+            <span class="pix-price">💚 R$ 1.899,05 no Pix</span>
           </div>
-          <button class="hero-btn" onclick="addToCart('LG OLED evo C3 65 4K',4999)">Comprar Agora</button>
+          <button class="hero-btn" onclick="addToCart('Smart TV LG OLED evo 65 C3 4K 120Hz Dolby Vision',1999,'https://www.lg.com/br/images/tvs/md07536350/gallery/medium01.jpg')">Comprar Agora</button>
         </div>
         <div class="hero-img-wrap">
-          <img src="https://www.lg.com/br/images/tvs/md07536350/gallery/medium01.jpg" alt="LG OLED C3" onerror="this.src='https://images.unsplash.com/photo-1593784991095-a205069470b6?w=400&q=80'">
+          <img src="https://www.lg.com/br/images/tvs/md07536350/gallery/medium01.jpg" alt="LG OLED" onerror="this.src='https://images.unsplash.com/photo-1593784991095-a205069470b6?w=400&q=80'">
         </div>
       </div>
-
     </div>
-
     <button class="hero-arrow left" onclick="changeSlide(-1)">&#8249;</button>
     <button class="hero-arrow right" onclick="changeSlide(1)">&#8250;</button>
     <div class="hero-dots" id="heroDots">
@@ -152,76 +140,43 @@
       <span class="dot" onclick="goSlide(3)"></span>
     </div>
   </div>
-
   <div class="side-banners">
-    <div class="side-banner" style="background:linear-gradient(135deg,#c0392b,#922b21)" onclick="addToCart('Samsung Galaxy A55 5G',1869)">
+    <div class="side-banner" style="background:linear-gradient(135deg,#c0392b,#922b21)" onclick="filterCategory('smartphones')">
       <div class="side-banner-text">
-        <span class="side-tag">📱 5G</span>
+        <span class="side-tag">📱 73% OFF</span>
         <h3>Galaxy A55<br>5G 256GB</h3>
-        <div class="side-price">R$ 1.869</div>
-        <small>12x R$ 155,75 s/juros</small>
+        <div class="side-price">R$ 599</div>
+        <small>De R$ 2.199 | 12x R$ 49,91</small>
       </div>
       <img src="https://images.samsung.com/is/image/samsung/p6pim/br/sm-a556blbpzto/gallery/br-galaxy-a55-5g-sm-a556-sm-a556blbpzto-thumb-539143658?$650_519_PNG$" alt="Galaxy A55" onerror="this.style.display='none'">
     </div>
-    <div class="side-banner" style="background:linear-gradient(135deg,#1565c0,#0d47a1)" onclick="addToCart('Notebook Lenovo IdeaPad 3i',2499)">
+    <div class="side-banner" style="background:linear-gradient(135deg,#1565c0,#0d47a1)" onclick="filterCategory('games')">
       <div class="side-banner-text">
-        <span class="side-tag">💻 Oferta</span>
-        <h3>Lenovo IdeaPad<br>3i Core i5</h3>
-        <div class="side-price">R$ 2.499</div>
-        <small>12x R$ 208,25 s/juros</small>
+        <span class="side-tag">🎮 79% OFF</span>
+        <h3>Xbox Series X<br>1TB SSD</h3>
+        <div class="side-price">R$ 899</div>
+        <small>De R$ 4.299 | 12x R$ 74,91</small>
       </div>
-      <img src="https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MTA5MDMxfGltYWdlL3BuZ3xoMjgvaGZhLzE0NTYyMjMzODQ3NTE0LnBuZ3w3NzQ4NDA1YzVmMzgwNTFiNDZkY2EyZjE0MjEyZTI5ZmMwYzA0MThjMGExYTM5NzE0MDZlNWE2ZGUzNzFjNzUy/lenovo-laptop-ideapad-3i-gen-8-15-intel-platinum-grey-front-facing.png" alt="Lenovo IdeaPad" onerror="this.style.display='none'">
+      <img src="https://news.xbox.com/en-us/wp-content/uploads/sites/2/2020/12/XboxSeriesX_Consolealone.png" alt="Xbox Series X" onerror="this.style.display='none'">
     </div>
   </div>
 </section>
 
-<!-- CATEGORIES -->
 <section class="section-wrap">
   <div class="categories-strip">
-    <div class="cat-item" onclick="filterCategory('smartphones')">
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=80&h=80&fit=crop" alt="Smartphones">
-      <span>Smartphones</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('notebooks')">
-      <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=80&h=80&fit=crop" alt="Notebooks">
-      <span>Notebooks</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('tvs')">
-      <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=80&h=80&fit=crop" alt="TVs">
-      <span>Smart TVs</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('eletros')">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=80&h=80&fit=crop" alt="Eletros">
-      <span>Eletrodomésticos</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('games')">
-      <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=80&h=80&fit=crop" alt="Games">
-      <span>Games</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('audio')">
-      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=80&h=80&fit=crop" alt="Áudio">
-      <span>Áudio</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('wearables')">
-      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=80&h=80&fit=crop" alt="Wearables">
-      <span>Wearables</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('cameras')">
-      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=80&h=80&fit=crop" alt="Câmeras">
-      <span>Câmeras</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('eletros')">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop" alt="Móveis">
-      <span>Móveis</span>
-    </div>
-    <div class="cat-item" onclick="filterCategory('eletros')">
-      <img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=80&h=80&fit=crop" alt="Beleza">
-      <span>Beleza</span>
-    </div>
+    <div class="cat-item" onclick="filterCategory('smartphones')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=80&h=80&fit=crop" alt="Smartphones"><span>Smartphones</span></div>
+    <div class="cat-item" onclick="filterCategory('notebooks')"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=80&h=80&fit=crop" alt="Notebooks"><span>Notebooks</span></div>
+    <div class="cat-item" onclick="filterCategory('tvs')"><img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=80&h=80&fit=crop" alt="TVs"><span>Smart TVs</span></div>
+    <div class="cat-item" onclick="filterCategory('eletros')"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=80&h=80&fit=crop" alt="Eletros"><span>Eletrodomésticos</span></div>
+    <div class="cat-item" onclick="filterCategory('games')"><img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=80&h=80&fit=crop" alt="Games"><span>Games</span></div>
+    <div class="cat-item" onclick="filterCategory('audio')"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=80&h=80&fit=crop" alt="Áudio"><span>Áudio</span></div>
+    <div class="cat-item" onclick="filterCategory('wearables')"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=80&h=80&fit=crop" alt="Wearables"><span>Wearables</span></div>
+    <div class="cat-item" onclick="filterCategory('all')"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=80&h=80&fit=crop" alt="Câmeras"><span>Câmeras</span></div>
+    <div class="cat-item" onclick="filterCategory('all')"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop" alt="Móveis"><span>Móveis</span></div>
+    <div class="cat-item" onclick="filterCategory('all')"><img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=80&h=80&fit=crop" alt="Beleza"><span>Beleza</span></div>
   </div>
 </section>
 
-<!-- OFERTA DO DIA -->
 <section class="section-wrap">
   <div class="section-header">
     <div class="section-title-wrap">
@@ -233,117 +188,53 @@
     </div>
     <a href="#" class="see-all">Ver todas →</a>
   </div>
-
-  <div class="products-grid" id="productsGrid">
-    <!-- Products rendered by JS -->
-  </div>
+  <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<!-- INFO BAR -->
-<section class="info-bar">
+<div class="info-bar">
   <div class="info-item">
-    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=60&h=60&fit=crop" alt="Entrega">
-    <div>
-      <h4>Frete Grátis</h4>
-      <p>Em milhares de produtos para todo o Brasil</p>
-    </div>
+    <div style="font-size:36px">🚚</div>
+    <div><h4>Frete Grátis</h4><p>Em milhares de produtos para todo o Brasil</p></div>
   </div>
   <div class="info-item">
-    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=60&h=60&fit=crop" alt="Parcelas">
-    <div>
-      <h4>Até 36x sem juros</h4>
-      <p>No Cartão Luiza com as melhores condições</p>
-    </div>
+    <div style="font-size:36px">💳</div>
+    <div><h4>Até 36x sem juros</h4><p>No Cartão Luiza com as melhores condições</p></div>
   </div>
   <div class="info-item">
-    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=60&h=60&fit=crop" alt="Pix">
-    <div>
-      <h4>Desconto no Pix</h4>
-      <p>Pague com Pix e economize até 5% extra</p>
-    </div>
+    <div style="font-size:36px">💚</div>
+    <div><h4>Desconto no Pix</h4><p>Pague com Pix e economize até 5% extra</p></div>
   </div>
   <div class="info-item">
-    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=60&h=60&fit=crop" alt="Loja">
-    <div>
-      <h4>Retire na Loja</h4>
-      <p>Mais de 1.400 lojas físicas em todo o Brasil</p>
-    </div>
+    <div style="font-size:36px">🏪</div>
+    <div><h4>Retire na Loja</h4><p>Mais de 1.400 lojas físicas em todo o Brasil</p></div>
   </div>
-</section>
+</div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Institucional</h4>
-        <a href="#">Sobre o Magazine Luiza</a>
-        <a href="#">Trabalhe Conosco</a>
-        <a href="#">Imprensa</a>
-        <a href="#">Relação com Investidores</a>
-        <a href="#">Sustentabilidade</a>
-        <a href="#">Código de Conduta</a>
-      </div>
-      <div class="footer-col">
-        <h4>Atendimento</h4>
-        <a href="#">Central de Atendimento</a>
-        <a href="#">Fale Conosco</a>
-        <a href="#">Trocas e Devoluções</a>
-        <a href="#">Prazo de Entrega</a>
-        <a href="#">Rastrear Pedido</a>
-        <a href="#">Política de Privacidade</a>
-      </div>
-      <div class="footer-col">
-        <h4>Formas de Pagamento</h4>
-        <a href="#">Cartão Luiza</a>
-        <a href="#">Boleto Bancário</a>
-        <a href="#">Pix</a>
-        <a href="#">Cartões de Crédito</a>
-        <a href="#">MagaluPay</a>
-        <a href="#">Vale-Presente</a>
-      </div>
-      <div class="footer-col">
-        <h4>Serviços</h4>
-        <a href="#">Magazine Você</a>
-        <a href="#">Magalu Marketplace</a>
-        <a href="#">MagaluPay</a>
-        <a href="#">Seguro Luiza</a>
-        <a href="#">Assistência Técnica</a>
-        <a href="#">Programa Fidelidade</a>
-      </div>
-      <div class="footer-col">
-        <h4>Redes Sociais</h4>
-        <a href="#">📘 Facebook</a>
-        <a href="#">📷 Instagram</a>
-        <a href="#">🐦 Twitter / X</a>
-        <a href="#">▶️ YouTube</a>
-        <a href="#">💼 LinkedIn</a>
-        <a href="#">🎵 TikTok</a>
-      </div>
+      <div class="footer-col"><h4>Institucional</h4><a href="#">Sobre o Magazine Luiza</a><a href="#">Trabalhe Conosco</a><a href="#">Imprensa</a><a href="#">Relação com Investidores</a><a href="#">Sustentabilidade</a></div>
+      <div class="footer-col"><h4>Atendimento</h4><a href="#">Central de Atendimento</a><a href="#">Fale Conosco</a><a href="#">Trocas e Devoluções</a><a href="#">Prazo de Entrega</a><a href="#">Rastrear Pedido</a></div>
+      <div class="footer-col"><h4>Pagamento</h4><a href="#">Cartão Luiza</a><a href="#">Boleto Bancário</a><a href="#">Pix</a><a href="#">Cartões de Crédito</a><a href="#">MagaluPay</a></div>
+      <div class="footer-col"><h4>Serviços</h4><a href="#">Magazine Você</a><a href="#">Marketplace</a><a href="#">MagaluPay</a><a href="#">Seguro Luiza</a><a href="#">Assistência Técnica</a></div>
+      <div class="footer-col"><h4>Redes Sociais</h4><a href="#">📘 Facebook</a><a href="#">📷 Instagram</a><a href="#">▶️ YouTube</a><a href="#">🎵 TikTok</a><a href="#">💼 LinkedIn</a></div>
     </div>
     <div class="footer-bottom">
       <p>© 2024 Magazine Luiza S.A. — CNPJ: 47.960.950/1088-56 | Todos os direitos reservados</p>
-      <div class="payments">
-        <span>VISA</span><span>MASTER</span><span>PIX</span><span>ELO</span><span>AMEX</span><span>HIPER</span>
-      </div>
+      <div class="payments"><span>VISA</span><span>MASTER</span><span>PIX</span><span>ELO</span><span>AMEX</span><span>HIPER</span></div>
     </div>
   </div>
 </footer>
 
-<!-- CART SIDEBAR -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header">
-    <h3>🛒 Meu Carrinho</h3>
-    <button onclick="closeCart()">✕</button>
-  </div>
+  <div class="cart-header"><h3>🛒 Meu Carrinho</h3><button onclick="closeCart()">✕</button></div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-footer" id="cartFooter"></div>
 </div>
 
-<!-- CHATBOT -->
-<button class="chatbot-btn" onclick="alert('Olá! Sou a Lu, assistente virtual do Magalu! Como posso ajudar?')">
-  <img src="https://i.imgur.com/9sIkQe7.png" alt="Lu" onerror="this.style.display='none'">
+<button class="chatbot-btn" onclick="window.location.href='auth.html'">
+  <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/d/dc/Lu_do_Magalu.png/220px-Lu_do_Magalu.png" alt="Lu do Magalu" onerror="this.src='https://i.imgur.com/sQxuqJI.png'">
   💬 Falar com a Lu
 </button>
 
