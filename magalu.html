@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine Luiza - Melhores Ofertas</title>
+<style>
+  :root {
+    --blue: #0086ff;
+    --blue-dark: #0066cc;
+    --yellow: #ffd700;
+    --yellow-btn: #f8c000;
+    --red: #e53935;
+    --green: #43a047;
+    --gray-light: #f5f5f5;
+    --gray-border: #e0e0e0;
+    --text-dark: #1a1a1a;
+    --text-mid: #555;
+    --text-light: #888;
+    --white: #fff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#f0f0f0; color:var(--text-dark); }
+
+  /* HEADER */
+  .header { background:var(--blue); padding:0; }
+  .header-top { display:flex; align-items:center; gap:10px; padding:8px 16px; max-width:1280px; margin:0 auto; }
+  .logo { color:#fff; font-size:22px; font-weight:900; letter-spacing:-1px; background:#fff; color:var(--blue); padding:4px 10px; border-radius:4px; cursor:pointer; }
+  .logo span { color:var(--yellow); }
+  .search-bar { flex:1; display:flex; }
+  .search-bar input { flex:1; padding:9px 14px; border:none; border-radius:4px 0 0 4px; font-size:14px; outline:none; }
+  .search-bar button { background:var(--yellow-btn); border:none; padding:9px 16px; border-radius:0 4px 4px 0; cursor:pointer; font-size:16px; }
+  .header-icons { display:flex; gap:16px; color:#fff; font-size:12px; }
+  .header-icon { display:flex; flex-direction:column; align-items:center; cursor:pointer; gap:2px; }
+  .header-icon:hover { color:var(--yellow); }
+  .header-icon .ico { font-size:20px; }
+  .nav { background:#0073e0; padding:0 16px; max-width:1280px; margin:0 auto; display:flex; gap:4px; overflow-x:auto; }
+  .nav a { color:#fff; font-size:13px; text-decoration:none; padding:8px 12px; white-space:nowrap; display:block; }
+  .nav a:hover { background:rgba(255,255,255,0.15); border-radius:4px; }
+
+  /* BANNER */
+  .banner-section { background:#fff; padding:12px 16px; max-width:1280px; margin:8px auto; border-radius:8px; display:flex; gap:12px; align-items:stretch; }
+  .banner-main { flex:1; background:linear-gradient(135deg,#001a6e,#0086ff); border-radius:8px; padding:28px 32px; color:#fff; position:relative; overflow:hidden; min-height:180px; display:flex; flex-direction:column; justify-content:center; }
+  .banner-main::after { content:''; position:absolute; right:-20px; top:-30px; width:220px; height:220px; background:rgba(255,255,255,0.05); border-radius:50%; }
+  .banner-main .tag { background:var(--yellow); color:#000; font-size:11px; font-weight:700; padding:2px 8px; border-radius:3px; display:inline-block; margin-bottom:8px; }
+  .banner-main h2 { font-size:28px; font-weight:900; line-height:1.1; }
+  .banner-main .price { font-size:18px; margin:8px 0 16px; }
+  .banner-main .price b { font-size:32px; }
+  .banner-main .btn-buy { background:var(--yellow-btn); color:#000; border:none; padding:10px 28px; border-radius:6px; font-size:14px; font-weight:700; cursor:pointer; display:inline-block; }
+  .banner-side { display:flex; flex-direction:column; gap:10px; width:220px; }
+  .banner-side-card { background:linear-gradient(135deg,#6a1b9a,#9c27b0); border-radius:8px; padding:16px; color:#fff; flex:1; cursor:pointer; transition:transform .15s; }
+  .banner-side-card:hover { transform:scale(1.02); }
+  .banner-side-card .off { background:#ff5722; font-size:11px; font-weight:700; padding:2px 6px; border-radius:3px; display:inline-block; margin-bottom:6px; }
+  .banner-side-card h3 { font-size:14px; font-weight:700; margin-bottom:4px; }
+  .banner-side-card .p2 { font-size:18px; font-weight:900; color:var(--yellow); }
+
+  /* CATEGORIES */
+  .categories { background:#fff; padding:16px; max-width:1280px; margin:0 auto 8px; border-radius:8px; }
+  .cat-grid { display:flex; gap:8px; justify-content:space-around; flex-wrap:wrap; }
+  .cat-item { display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; padding:8px 12px; border-radius:8px; transition:background .15s; min-width:70px; }
+  .cat-item:hover { background:var(--gray-light); }
+  .cat-img { width:52px; height:52px; border-radius:50%; object-fit:cover; background:#f0f4ff; display:flex; align-items:center; justify-content:center; font-size:26px; }
+  .cat-item span { font-size:11px; color:var(--text-mid); text-align:center; font-weight:500; }
+
+  /* SECTION */
+  .section { background:#fff; padding:16px; max-width:1280px; margin:0 auto 8px; border-radius:8px; }
+  .section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .section-title { font-size:18px; font-weight:800; color:var(--text-dark); display:flex; align-items:center; gap:8px; }
+  .section-title .fire { font-size:20px; }
+  .timer { background:#0086ff; color:#fff; font-size:13px; font-weight:700; padding:4px 12px; border-radius:4px; font-variant-numeric:tabular-nums; }
+  .see-all { color:var(--blue); font-size:13px; text-decoration:none; font-weight:600; }
+
+  /* PRODUCTS GRID */
+  .products-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:12px; }
+  .product-card { border:1.5px solid var(--gray-border); border-radius:8px; overflow:hidden; background:#fff; cursor:pointer; transition:box-shadow .2s, transform .2s; position:relative; display:flex; flex-direction:column; }
+  .product-card:hover { box-shadow:0 4px 20px rgba(0,0,0,0.12); transform:translateY(-2px); }
+  .discount-badge { position:absolute; top:8px; left:8px; background:var(--red); color:#fff; font-size:11px; font-weight:700; padding:2px 6px; border-radius:3px; z-index:2; }
+  .fav-btn { position:absolute; top:8px; right:8px; background:#fff; border:none; font-size:18px; cursor:pointer; z-index:2; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,0.15); }
+  .product-img-wrap { width:100%; padding:16px; display:flex; align-items:center; justify-content:center; background:#fff; height:170px; }
+  .product-img-wrap img { max-width:100%; max-height:138px; object-fit:contain; transition:transform .3s; }
+  .product-card:hover .product-img-wrap img { transform:scale(1.05); }
+  .product-info { padding:10px 12px 12px; flex:1; display:flex; flex-direction:column; }
+  .product-brand { font-size:10px; color:var(--blue); font-weight:700; text-transform:uppercase; margin-bottom:2px; }
+  .product-name { font-size:13px; color:var(--text-dark); font-weight:500; line-height:1.35; margin-bottom:8px; flex:1; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .stars { color:#ffc107; font-size:12px; display:flex; align-items:center; gap:3px; margin-bottom:6px; }
+  .stars span { color:var(--text-light); font-size:11px; }
+  .price-old { font-size:11px; color:var(--text-light); text-decoration:line-through; }
+  .price-new { font-size:20px; font-weight:900; color:var(--text-dark); line-height:1.1; }
+  .price-pix { font-size:11px; color:var(--green); font-weight:600; }
+  .price-install { font-size:11px; color:var(--text-mid); }
+  .btn-buy-card { background:var(--blue); color:#fff; border:none; width:100%; padding:9px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; margin-top:10px; transition:background .15s; }
+  .btn-buy-card:hover { background:var(--blue-dark); }
+
+  /* PRODUCT PAGE (modal) */
+  .product-page { display:none; position:fixed; inset:0; background:#f0f0f0; z-index:1000; overflow-y:auto; }
+  .product-page.active { display:block; }
+  .pp-header { background:var(--blue); padding:10px 20px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:10; }
+  .pp-back { background:none; border:none; color:#fff; font-size:22px; cursor:pointer; padding:4px 8px; }
+  .pp-header-title { color:#fff; font-size:16px; font-weight:600; }
+  .pp-content { max-width:1100px; margin:16px auto; display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:0 16px 40px; }
+  .pp-gallery { background:#fff; border-radius:10px; padding:20px; }
+  .pp-main-img { width:100%; display:flex; align-items:center; justify-content:center; height:380px; margin-bottom:16px; }
+  .pp-main-img img { max-width:100%; max-height:360px; object-fit:contain; }
+  .pp-thumbs { display:flex; gap:10px; flex-wrap:wrap; }
+  .pp-thumb { width:70px; height:70px; border:2px solid var(--gray-border); border-radius:6px; overflow:hidden; cursor:pointer; display:flex; align-items:center; justify-content:center; background:#fff; padding:4px; transition:border-color .15s; }
+  .pp-thumb:hover, .pp-thumb.active { border-color:var(--blue); }
+  .pp-thumb img { max-width:100%; max-height:100%; object-fit:contain; }
+  .pp-right { display:flex; flex-direction:column; gap:14px; }
+  .pp-brand { color:var(--blue); font-size:12px; font-weight:700; text-transform:uppercase; }
+  .pp-title { font-size:22px; font-weight:800; color:var(--text-dark); line-height:1.3; }
+  .pp-stars { color:#ffc107; font-size:16px; display:flex; align-items:center; gap:8px; }
+  .pp-stars .count { color:var(--text-light); font-size:13px; }
+  .pp-price-box { background:var(--gray-light); border-radius:8px; padding:16px; }
+  .pp-old { font-size:14px; color:var(--text-light); text-decoration:line-through; }
+  .pp-new { font-size:36px; font-weight:900; color:var(--text-dark); }
+  .pp-pix { font-size:14px; color:var(--green); font-weight:700; margin:4px 0; }
+  .pp-install { font-size:13px; color:var(--text-mid); }
+  .pp-btns { display:flex; flex-direction:column; gap:10px; }
+  .pp-btn-buy { background:var(--yellow-btn); color:#000; border:none; padding:14px; border-radius:8px; font-size:16px; font-weight:800; cursor:pointer; width:100%; transition:background .15s; }
+  .pp-btn-buy:hover { background:#e0ac00; }
+  .pp-btn-cart { background:var(--blue); color:#fff; border:none; padding:14px; border-radius:8px; font-size:16px; font-weight:800; cursor:pointer; width:100%; transition:background .15s; }
+  .pp-btn-cart:hover { background:var(--blue-dark); }
+  .pp-desc { background:#fff; border-radius:10px; padding:20px; grid-column:1/-1; }
+  .pp-desc h3 { font-size:18px; font-weight:800; margin-bottom:14px; color:var(--text-dark); border-bottom:2px solid var(--blue); padding-bottom:8px; }
+  .pp-desc p { font-size:14px; color:var(--text-mid); line-height:1.8; margin-bottom:12px; }
+  .pp-specs { background:#fff; border-radius:10px; padding:20px; grid-column:1/-1; }
+  .pp-specs h3 { font-size:18px; font-weight:800; margin-bottom:14px; color:var(--text-dark); border-bottom:2px solid var(--blue); padding-bottom:8px; }
+  .spec-table { width:100%; border-collapse:collapse; }
+  .spec-table tr:nth-child(even) td { background:#f9f9f9; }
+  .spec-table td { padding:10px 14px; font-size:13px; border-bottom:1px solid var(--gray-border); }
+  .spec-table td:first-child { font-weight:600; color:var(--text-dark); width:40%; }
+  .spec-table td:last-child { color:var(--text-mid); }
+
+  /* FOOTER */
+  .footer { background:#0086ff; color:#fff; text-align:center; padding:24px; margin-top:16px; font-size:13px; }
+
+  @media(max-width:768px) {
+    .pp-content { grid-template-columns:1fr; }
+    .banner-side { display:none; }
+    .products-grid { grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo">magazine<span>luiza</span></div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar em Magazine Luiza">
+      <button>🔍</button>
+    </div>
+    <div class="header-icons">
+      <div class="header-icon"><div class="ico">⭐</div><span>Selecione</span></div>
+      <div class="header-icon"><div class="ico">🏪</div><span>Lojas</span></div>
+      <div class="header-icon"><div class="ico">👤</div><span>Cadastre-se</span></div>
+      <div class="header-icon"><div class="ico">🛒</div><span>Meu Carrinho</span></div>
+    </div>
+  </div>
+  <div style="background:#0073e0;">
+    <div class="nav">
+      <a href="#">☰ Todas as Categorias</a>
+      <a href="#">📱 Smartphones</a>
+      <a href="#">💻 Notebooks</a>
+      <a href="#">📺 Smart TVs</a>
+      <a href="#">⚡ Eletrodomésticos</a>
+      <a href="#">🎮 Games</a>
+      <a href="#">🎵 Áudio</a>
+      <a href="#">⌚ Wearables</a>
+      <a href="#">🔥 Ofertas do Dia</a>
+    </div>
+  </div>
+</div>
+
+<!-- BANNER -->
+<div class="banner-section">
+  <div class="banner-main">
+    <div class="tag">OFERTA ESPECIAL</div>
+    <h2>iPhone 16<br>128GB</h2>
+    <div class="price">12x de <b>R$ 158,25</b> sem juros</div>
+    <button class="btn-buy" onclick="openProduct(0)">Comprar Agora</button>
+  </div>
+  <div class="banner-side">
+    <div class="banner-side-card" onclick="openProduct(6)">
+      <div class="off">79% OFF</div>
+      <h3>Xbox Series X<br>1TB SSD</h3>
+      <div class="p2">R$ 899</div>
+    </div>
+    <div class="banner-side-card" style="background:linear-gradient(135deg,#b71c1c,#e53935);" onclick="openProduct(5)">
+      <div class="off">-48%</div>
+      <h3>Motorola Edge 50 Pro<br>512GB 5G</h3>
+      <div class="p2">R$ 1.899</div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="categories">
+  <div class="cat-grid" id="catGrid"></div>
+</div>
+
+<!-- OFERTAS DO DIA -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title"><span class="fire">🔥</span> Oferta do Dia <span class="timer" id="timer">05:12:41</span></div>
+    <a class="see-all" href="#">Ver todas →</a>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- MAIS VENDIDOS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">⭐ Mais Vendidos</div>
+    <a class="see-all" href="#">Ver todos →</a>
+  </div>
+  <div class="products-grid" id="bestGrid"></div>
+</div>
+
+<!-- PRODUCT PAGE (modal) -->
+<div class="product-page" id="productPage">
+  <div class="pp-header">
+    <button class="pp-back" onclick="closePage()">←</button>
+    <div class="pp-header-title" id="ppBreadcrumb">Produto</div>
+  </div>
+  <div class="pp-content" id="ppContent"></div>
+</div>
+
+<div class="footer">© 2024 Magazine Luiza S.A. - CNPJ 47.960.950/0001-21 | Todos os direitos reservados</div>
+
+<script>
+const categories = [
+  { emoji:'📱', name:'Smartphones' },
+  { emoji:'💻', name:'Notebooks' },
+  { emoji:'📺', name:'Smart TVs' },
+  { emoji:'⚡', name:'Eletrodomésticos' },
+  { emoji:'🎮', name:'Games' },
+  { emoji:'🎵', name:'Áudio' },
+  { emoji:'⌚', name:'Wearables' },
+  { emoji:'📷', name:'Câmeras' },
+  { emoji:'📱', name:'Móveis' },
+  { emoji:'💄', name:'Beleza' },
+];
+
+const products = [
+  {
+    id:0,
+    brand:'Apple',
+    name:'iPhone 16 128GB',
+    img:'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&q=80',
+      'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=400&q=80',
+      'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=400&q=80',
+    ],
+    discount:48, oldPrice:'R$ 8.299,00', price:'R$ 4.299,00',
+    pix:'R$ 4.084,05 no Pix (5% off)',
+    install:'12x de R$ 358,25 sem juros',
+    rating:4.8, reviews:8231,
+    desc:'O iPhone 16 representa o salto mais significativo da Apple nos últimos anos. Com o novo chip A18, câmera principal de 48MP com estabilização óptica avançada, e a tela Super Retina XDR de 6,1 polegadas, ele redefine o que um smartphone pode oferecer. O Dynamic Island agora é ainda mais inteligente e integrado ao sistema. Bateria com duração de até 22 horas de uso contínuo.',
+    specs:[
+      ['Processador','Apple A18 (3nm)'],
+      ['Memória RAM','8GB'],
+      ['Armazenamento','128GB'],
+      ['Tela','6,1" Super Retina XDR OLED'],
+      ['Câmera Principal','48MP f/1.6'],
+      ['Câmera Frontal','12MP TrueDepth'],
+      ['Bateria','3.561 mAh'],
+      ['Sistema','iOS 18'],
+      ['Conectividade','5G, Wi-Fi 6E, Bluetooth 5.3'],
+      ['Cor','Preto Meia-Noite'],
+    ]
+  },
+  {
+    id:1,
+    brand:'Apple',
+    name:'iPhone 14 Pro Max 256GB',
+    img:'https://images.unsplash.com/photo-1678685888221-cda773a3dcdb?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1678685888221-cda773a3dcdb?w=400&q=80',
+      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=400&q=80',
+    ],
+    discount:34, oldPrice:'R$ 11.099,00', price:'R$ 7.299,00',
+    pix:'R$ 6.934,05 no Pix',
+    install:'12x de R$ 608,25 sem juros',
+    rating:4.9, reviews:5120,
+    desc:'O iPhone 14 Pro Max é o topo de linha da Apple com Dynamic Island, câmera tripla de 48MP, tela sempre ativa Pro Motion de 120Hz e o poderoso chip A16 Bionic. Com 256GB de armazenamento, você terá espaço de sobra para fotos, vídeos em ProRes e seus aplicativos favoritos.',
+    specs:[
+      ['Processador','Apple A16 Bionic'],
+      ['Memória RAM','6GB'],
+      ['Armazenamento','256GB'],
+      ['Tela','6,7" Super Retina XDR ProMotion 120Hz'],
+      ['Câmera Principal','48MP + 12MP + 12MP'],
+      ['Câmera Frontal','12MP TrueDepth'],
+      ['Bateria','4.323 mAh'],
+      ['Sistema','iOS 17'],
+      ['Conectividade','5G, Wi-Fi 6, Bluetooth 5.3'],
+    ]
+  },
+  {
+    id:2,
+    brand:'Samsung',
+    name:'Galaxy S25 Ultra 256GB 5G',
+    img:'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80',
+      'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=400&q=80',
+    ],
+    discount:30, oldPrice:'R$ 9.299,00', price:'R$ 6.499,00',
+    pix:'R$ 6.174,05 no Pix',
+    install:'12x de R$ 541,58 sem juros',
+    rating:4.8, reviews:3876,
+    desc:'O Samsung Galaxy S25 Ultra é o smartphone mais avançado da Samsung. Com tela Dynamic AMOLED 2X de 6,9 polegadas, 200MP de câmera principal, S Pen integrada e 12GB de RAM, é perfeito para profissionais e criadores de conteúdo que exigem o máximo desempenho.',
+    specs:[
+      ['Processador','Snapdragon 8 Elite'],
+      ['Memória RAM','12GB'],
+      ['Armazenamento','256GB'],
+      ['Tela','6,9" Dynamic AMOLED 2X 120Hz'],
+      ['Câmera Principal','200MP + 50MP + 10MP + 10MP'],
+      ['Câmera Frontal','12MP'],
+      ['Bateria','5.000 mAh'],
+      ['Sistema','Android 15 / One UI 7'],
+      ['Conectividade','5G, Wi-Fi 7, Bluetooth 5.4'],
+      ['Extras','S Pen integrada'],
+    ]
+  },
+  {
+    id:3,
+    brand:'Samsung',
+    name:'Galaxy S25+ 256GB 5G',
+    img:'https://images.unsplash.com/photo-1631171148900-dc66e0b6ac4e?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1631171148900-dc66e0b6ac4e?w=400&q=80',
+      'https://images.unsplash.com/photo-1583573636842-b1a1ada2f85e?w=400&q=80',
+    ],
+    discount:28, oldPrice:'R$ 6.649,00', price:'R$ 4.799,00',
+    pix:'R$ 4.559,05 no Pix',
+    install:'12x de R$ 399,91 sem juros',
+    rating:4.7, reviews:2240,
+    desc:'O Galaxy S25+ combina tela grande de 6,7 polegadas com chip Snapdragon 8 Elite e câmera tripla de alta resolução. Ideal para quem quer o premium Samsung sem o tamanho máximo, com bateria de 4.900mAh e carregamento rápido de 45W.',
+    specs:[
+      ['Processador','Snapdragon 8 Elite'],
+      ['Memória RAM','12GB'],
+      ['Armazenamento','256GB'],
+      ['Tela','6,7" Dynamic AMOLED 2X 120Hz'],
+      ['Câmera Principal','50MP + 10MP + 10MP'],
+      ['Câmera Frontal','12MP'],
+      ['Bateria','4.900 mAh'],
+      ['Sistema','Android 15 / One UI 7'],
+      ['Conectividade','5G, Wi-Fi 7, Bluetooth 5.4'],
+    ]
+  },
+  {
+    id:4,
+    brand:'Samsung',
+    name:'Galaxy A56 5G 128GB 8GB RAM',
+    img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80',
+    ],
+    discount:40, oldPrice:'R$ 2.999,00', price:'R$ 1.799,00',
+    pix:'R$ 1.709,05 no Pix',
+    install:'12x de R$ 149,91 sem juros',
+    rating:4.5, reviews:3547,
+    desc:'O Galaxy A56 5G traz o melhor custo-benefício Samsung com tela Super AMOLED de 6,7 polegadas, câmera tripla com IA, 8GB RAM e processador Exynos 1580. Conectividade 5G e bateria de 5.000mAh garantem dias de uso sem preocupação.',
+    specs:[
+      ['Processador','Exynos 1580'],
+      ['Memória RAM','8GB'],
+      ['Armazenamento','128GB (expansível)'],
+      ['Tela','6,7" Super AMOLED 120Hz'],
+      ['Câmera Principal','50MP + 12MP + 5MP'],
+      ['Câmera Frontal','12MP'],
+      ['Bateria','5.000 mAh'],
+      ['Sistema','Android 15 / One UI 7'],
+      ['Conectividade','5G, Wi-Fi 6, Bluetooth 5.3'],
+    ]
+  },
+  {
+    id:5,
+    brand:'Motorola',
+    name:'Edge 50 Pro 512GB 5G 12GB RAM',
+    img:'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80',
+      'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&q=80',
+    ],
+    discount:48, oldPrice:'R$ 3.649,00', price:'R$ 1.899,00',
+    pix:'R$ 1.804,05 no Pix',
+    install:'12x de R$ 158,25 sem juros',
+    rating:4.6, reviews:5471,
+    desc:'O Motorola Edge 50 Pro chega com câmera de 50MP com zoom óptico 3x, tela pOLED de 144Hz, carregamento TurboPower de 125W que carrega 100% em apenas 22 minutos, e o premiado design fino de apenas 8,19mm.',
+    specs:[
+      ['Processador','Snapdragon 7 Gen 3'],
+      ['Memória RAM','12GB'],
+      ['Armazenamento','512GB'],
+      ['Tela','6,7" pOLED 144Hz'],
+      ['Câmera Principal','50MP + 13MP + 10MP'],
+      ['Câmera Frontal','50MP'],
+      ['Bateria','4.500 mAh / Carregamento 125W'],
+      ['Sistema','Android 14'],
+      ['Conectividade','5G, Wi-Fi 6E, Bluetooth 5.3'],
+    ]
+  },
+  {
+    id:6,
+    brand:'Microsoft',
+    name:'Xbox Series X 1TB SSD',
+    img:'https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400&q=80',
+      'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400&q=80',
+    ],
+    discount:79, oldPrice:'R$ 4.299,00', price:'R$ 899,00',
+    pix:'R$ 854,05 no Pix',
+    install:'12x de R$ 74,91 sem juros',
+    rating:4.9, reviews:12400,
+    desc:'O Xbox Series X é o console mais poderoso da Microsoft. Com processador AMD Zen 2 de 8 núcleos, GPU AMD RDNA 2 de 12 teraflops e SSD NVMe ultrarrápido de 1TB, ele roda jogos em 4K a 60fps, com suporte a 120fps e Ray Tracing. Retrocompatível com todos os jogos de Xbox anteriores.',
+    specs:[
+      ['Processador','AMD Zen 2 8 núcleos 3.8GHz'],
+      ['GPU','AMD RDNA 2 12 Teraflops'],
+      ['Memória RAM','16GB GDDR6'],
+      ['Armazenamento','1TB NVMe SSD'],
+      ['Resolução Máxima','4K / 120fps'],
+      ['Ray Tracing','Sim'],
+      ['HDR','Dolby Vision HDR'],
+      ['Áudio','Dolby Atmos'],
+      ['Formatos de Disco','4K Blu-ray'],
+    ]
+  },
+  {
+    id:7,
+    brand:'Samsung',
+    name:'Smart TV QLED 55" 4K Q80C',
+    img:'https://images.unsplash.com/photo-1593359677879-a4bb92f829e1?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1593359677879-a4bb92f829e1?w=400&q=80',
+      'https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&q=80',
+    ],
+    discount:35, oldPrice:'R$ 5.299,00', price:'R$ 3.449,00',
+    pix:'R$ 3.276,05 no Pix',
+    install:'12x de R$ 287,41 sem juros',
+    rating:4.7, reviews:4120,
+    desc:'A Samsung QLED Q80C oferece a tecnologia Quantum Dot para cores vibrantes, processador Neural Quantum Lite e tecnologia Anti-Reflexo. Com tela de 55 polegadas em resolução 4K e HDR10+, cada detalhe é apresentado com clareza extraordinária.',
+    specs:[
+      ['Tamanho da Tela','55 polegadas'],
+      ['Resolução','4K UHD (3840×2160)'],
+      ['Tecnologia','QLED Quantum Dot'],
+      ['Processador','Neural Quantum Lite 4K'],
+      ['HDR','HDR10+ / HLG'],
+      ['Taxa de Atualização','120Hz'],
+      ['Smart TV','Tizen 7.0'],
+      ['Conectividade','Wi-Fi, Bluetooth, 4x HDMI, 2x USB'],
+    ]
+  },
+  {
+    id:8,
+    brand:'Sony',
+    name:'PlayStation 5 Slim 1TB + 2 Controles',
+    img:'https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&q=80',
+    ],
+    discount:22, oldPrice:'R$ 4.199,00', price:'R$ 3.279,00',
+    pix:'R$ 3.115,05 no Pix',
+    install:'12x de R$ 273,25 sem juros',
+    rating:4.9, reviews:9871,
+    desc:'O PlayStation 5 Slim com dois controles DualSense é a experiência definitiva em gaming. O controle DualSense com feedback háptico e gatilhos adaptativos cria sensações nunca antes sentidas. CPU AMD Zen 2 e GPU AMD RDNA 2 garantem jogos em 4K/60fps com Ray Tracing.',
+    specs:[
+      ['CPU','AMD Zen 2 8 núcleos 3.5GHz'],
+      ['GPU','AMD RDNA 2 10.3 Teraflops'],
+      ['Memória','16GB GDDR6'],
+      ['Armazenamento','1TB NVMe SSD'],
+      ['Resolução','4K / 8K / 120fps'],
+      ['Controles Inclusos','2x DualSense'],
+      ['Ray Tracing','Sim'],
+      ['Áudio','Tempest 3D Audio'],
+    ]
+  },
+  {
+    id:9,
+    brand:'Apple',
+    name:'MacBook Air M3 13" 8GB 256GB',
+    img:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80',
+      'https://images.unsplash.com/photo-1611186871525-4afa7a13e41b?w=400&q=80',
+    ],
+    discount:18, oldPrice:'R$ 9.999,00', price:'R$ 8.199,00',
+    pix:'R$ 7.789,05 no Pix',
+    install:'12x de R$ 683,25 sem juros',
+    rating:4.9, reviews:6230,
+    desc:'O MacBook Air M3 redefiniu o que um notebook ultrafino pode fazer. O chip Apple M3 com CPU de 8 núcleos e GPU de até 10 núcleos oferece desempenho extraordinário. Com 18 horas de bateria, tela Liquid Retina de 13,6 polegadas e apenas 1,24kg, é perfeito para criadores em movimento.',
+    specs:[
+      ['Processador','Apple M3 (8 núcleos CPU)'],
+      ['Memória RAM','8GB unified memory'],
+      ['Armazenamento','256GB SSD'],
+      ['Tela','13,6" Liquid Retina 2560×1664'],
+      ['GPU','10 núcleos'],
+      ['Bateria','Até 18 horas'],
+      ['Peso','1,24kg'],
+      ['Conectividade','Wi-Fi 6E, Bluetooth 5.3, MagSafe 3'],
+      ['Sistema','macOS Sequoia'],
+    ]
+  },
+  {
+    id:10,
+    brand:'JBL',
+    name:'JBL Charge 5 Caixa de Som Portátil Bluetooth',
+    img:'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&q=80',
+    ],
+    discount:33, oldPrice:'R$ 1.199,00', price:'R$ 799,00',
+    pix:'R$ 759,05 no Pix',
+    install:'12x de R$ 66,58 sem juros',
+    rating:4.8, reviews:15200,
+    desc:'A JBL Charge 5 oferece som potente de alto nível com até 20 horas de reprodução. À prova d\'água IP67, ela pode ficar submersa por até 30 minutos. O banco de energia integrado permite carregar seus dispositivos enquanto você curte a música.',
+    specs:[
+      ['Potência','40W RMS'],
+      ['Bateria','20 horas de reprodução'],
+      ['Impermeabilidade','IP67 (submersível 1m/30min)'],
+      ['Bluetooth','5.1'],
+      ['Banco de Energia','Sim (carrega outros dispositivos)'],
+      ['Dimensões','22,3 × 9,6 × 9,6 cm'],
+      ['Peso','960g'],
+      ['Cores','Preto, Azul, Vermelho, Cinza'],
+    ]
+  },
+  {
+    id:11,
+    brand:'Samsung',
+    name:'Galaxy Watch 7 44mm Bluetooth',
+    img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80',
+    imgs:[
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80',
+    ],
+    discount:30, oldPrice:'R$ 2.099,00', price:'R$ 1.469,00',
+    pix:'R$ 1.395,05 no Pix',
+    install:'12x de R$ 122,41 sem juros',
+    rating:4.6, reviews:3480,
+    desc:'O Galaxy Watch 7 monitora sua saúde com sensores avançados de frequência cardíaca, ECG, SpO2 e temperatura corporal. Tela AMOLED de 1,47 polegadas, GPS integrado e até 40 horas de bateria. Compatível com Android e certificação militar MIL-STD-810H.',
+    specs:[
+      ['Tamanho da Tela','1,47" Super AMOLED'],
+      ['Processador','Exynos W1000 3nm'],
+      ['Memória','2GB RAM / 32GB'],
+      ['Bateria','Até 40 horas'],
+      ['GPS','Sim (multi-frequência)'],
+      ['Sensores','ECG, SpO2, Temperatura, Frequência Cardíaca'],
+      ['Resistência','IP68 / MIL-STD-810H'],
+      ['Compatibilidade','Android 10 ou superior'],
+    ]
+  },
+];
+
+// Render categories
+const catGrid = document.getElementById('catGrid');
+categories.forEach(c => {
+  catGrid.innerHTML += `
+    <div class="cat-item">
+      <div class="cat-img">${c.emoji}</div>
+      <span>${c.name}</span>
+    </div>`;
+});
+
+function renderCard(p) {
+  const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating%1 >= 0.5 ? '½':'') + '☆'.repeat(5-Math.ceil(p.rating));
+  return `
+    <div class="product-card" onclick="openProduct(${p.id})">
+      <div class="discount-badge">-${p.discount}%</div>
+      <button class="fav-btn" onclick="event.stopPropagation()">🤍</button>
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}"
+          onerror="this.src='https://placehold.co/200x200/e3eaff/0086ff?text=Produto'">
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${p.brand}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="stars">${stars} <span>(${p.reviews.toLocaleString('pt-BR')})</span></div>
+        <div class="price-old">${p.oldPrice}</div>
+        <div class="price-new">${p.price}</div>
+        <div class="price-pix">💳 ${p.pix}</div>
+        <div class="price-install">ou ${p.install}</div>
+        <button class="btn-buy-card">Comprar</button>
+      </div>
+    </div>`;
+}
+
+const productsGrid = document.getElementById('productsGrid');
+products.slice(0,6).forEach(p => { productsGrid.innerHTML += renderCard(p); });
+
+const bestGrid = document.getElementById('bestGrid');
+products.slice(6,12).forEach(p => { bestGrid.innerHTML += renderCard(p); });
+
+function openProduct(id) {
+  const p = products[id];
+  document.getElementById('ppBreadcrumb').textContent = p.name;
+  const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating%1 >= 0.5 ? '★':'') + '☆'.repeat(5-Math.ceil(p.rating));
+  const thumbsHTML = p.imgs.map((img,i) => `
+    <div class="pp-thumb ${i===0?'active':''}" onclick="changeImg('${img}',this)">
+      <img src="${img}" alt="Imagem ${i+1}"
+        onerror="this.src='https://placehold.co/70x70/e3eaff/0086ff?text=Img'">
+    </div>`).join('');
+  const specsHTML = p.specs.map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+
+  document.getElementById('ppContent').innerHTML = `
+    <div class="pp-gallery">
+      <div class="pp-main-img" id="ppMainImgWrap">
+        <img id="ppMainImg" src="${p.imgs[0]}" alt="${p.name}"
+          onerror="this.src='https://placehold.co/400x400/e3eaff/0086ff?text=Produto'">
+      </div>
+      <div class="pp-thumbs">${thumbsHTML}</div>
+    </div>
+    <div class="pp-right">
+      <div class="pp-brand">${p.brand}</div>
+      <div class="pp-title">${p.name}</div>
+      <div class="pp-stars">${stars} <span class="count">${p.rating} (${p.reviews.toLocaleString('pt-BR')} avaliações)</span></div>
+      <div class="pp-price-box">
+        <div class="pp-old">${p.oldPrice}</div>
+        <div class="pp-new">${p.price}</div>
+        <div class="pp-pix">💳 ${p.pix}</div>
+        <div class="pp-install">ou ${p.install}</div>
+      </div>
+      <div class="pp-btns">
+        <button class="pp-btn-buy" onclick="alert('Redirecionando para checkout...')">⚡ Comprar Agora</button>
+        <button class="pp-btn-cart" onclick="alert('Produto adicionado ao carrinho!')">🛒 Adicionar ao Carrinho</button>
+      </div>
+    </div>
+    <div class="pp-desc">
+      <h3>Descrição do Produto</h3>
+      <p>${p.desc}</p>
+    </div>
+    <div class="pp-specs">
+      <h3>Especificações Técnicas</h3>
+      <table class="spec-table">${specsHTML}</table>
+    </div>`;
+
+  document.getElementById('productPage').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function changeImg(src, el) {
+  document.getElementById('ppMainImg').src = src;
+  document.querySelectorAll('.pp-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function closePage() {
+  document.getElementById('productPage').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Timer countdown
+let seconds = 5*3600 + 12*60 + 41;
+setInterval(() => {
+  if(seconds > 0) seconds--;
+  const h = String(Math.floor(seconds/3600)).padStart(2,'0');
+  const m = String(Math.floor((seconds%3600)/60)).padStart(2,'0');
+  const s = String(seconds%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${h}:${m}:${s}`;
+}, 1000);
+</script>
+</body>
+</html>
