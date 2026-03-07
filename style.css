@@ -242,11 +242,17 @@ header { position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,
 .product-fav.active { color: var(--red); border-color: var(--red); }
 
 .product-img-wrap {
-  padding: 16px; display: flex; align-items: center; justify-content: center;
-  height: 170px; background: #fafafa;
+  padding: 12px; display: flex; align-items: center; justify-content: center;
+  height: 180px; background: #fff; border-bottom: 1px solid #f0f0f0;
+  overflow: hidden;
 }
-.product-img-wrap img { width: 130px; height: 130px; object-fit: contain; transition: transform .2s; }
-.product-card:hover .product-img-wrap img { transform: scale(1.05); }
+.product-img-wrap img {
+  width: 156px; height: 156px;
+  object-fit: contain; object-position: center;
+  transition: transform .25s ease;
+  image-rendering: -webkit-optimize-contrast;
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.07); }
 
 .product-info { padding: 12px; }
 .product-brand { font-size: 10px; color: var(--blue); font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
@@ -350,17 +356,24 @@ footer { background: var(--white); border-top: 1px solid var(--gray-border); pad
 .btn-checkout { background: var(--blue); color: var(--white); border: none; border-radius: 8px; width: 100%; padding: 14px; font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 12px; font-family: 'Nunito', sans-serif; transition: background .2s; }
 .btn-checkout:hover { background: var(--blue-dark); }
 
-/* ─── CHATBOT ─────────────────────────────── */
+/* ─── CHATBOT (Lu do Magalu) ──────────────────────────── */
 .chatbot-btn {
-  position: fixed; bottom: 24px; right: 24px;
-  background: var(--blue); color: var(--white); border: none; border-radius: 50px;
-  padding: 12px 20px; font-size: 14px; font-weight: 800; cursor: pointer;
-  display: flex; align-items: center; gap: 8px;
-  box-shadow: 0 4px 16px rgba(0,134,255,.4); z-index: 150;
-  font-family: 'Nunito', sans-serif; transition: transform .2s;
+  position: fixed; bottom: 0; left: 24px;
+  background: var(--blue); color: var(--white); border: none; border-radius: 16px 16px 0 0;
+  padding: 0 20px 10px; font-size: 13px; font-weight: 800; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  box-shadow: 0 -4px 20px rgba(0,134,255,.35); z-index: 150;
+  font-family: 'Nunito', sans-serif; transition: transform .2s, box-shadow .2s;
+  min-width: 100px;
 }
-.chatbot-btn:hover { transform: scale(1.05); }
-.chatbot-btn img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+.chatbot-btn:hover { transform: translateY(-6px); box-shadow: 0 -8px 28px rgba(0,134,255,.5); }
+.chatbot-btn img {
+  width: 72px; height: 96px;
+  object-fit: contain; object-position: bottom;
+  margin-bottom: 2px; margin-top: -8px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.25));
+}
+.chatbot-btn span { font-size: 11px; line-height: 1.3; }
 
 /* ─── PRODUCT PAGE ────────────────────────── */
 .product-page { max-width: 1280px; margin: 0 auto; padding: 16px; }
