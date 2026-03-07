@@ -261,6 +261,24 @@ header { position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,
 .product-price { font-size: 18px; font-weight: 900; line-height: 1.1; }
 .product-installment { font-size: 10px; color: #666; margin-top: 2px; }
 .product-pix { font-size: 10px; color: var(--green); font-weight: 700; margin-top: 2px; }
+
+/* ─── COLOR VARIANT DOTS ─────────────────── */
+.color-variants {
+  display: flex; gap: 6px; align-items: center;
+  margin: 6px 0 4px; flex-wrap: wrap;
+}
+.color-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  cursor: pointer; padding: 0;
+  outline: none; transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 0 0 2px transparent;
+  flex-shrink: 0;
+}
+.color-dot:hover { transform: scale(1.18); }
+.color-dot.active {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--blue) !important;
+  transform: scale(1.12);
+}
 .product-buy {
   background: var(--blue); color: var(--white); border: none; border-radius: 6px;
   width: 100%; padding: 8px; font-size: 13px; font-weight: 800; cursor: pointer;

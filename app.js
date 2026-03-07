@@ -1,335 +1,450 @@
 // ============================================================
-// MAGALU CLONE - app.js v3.1
-// Imagens reais via Unsplash (garantido) + descontos arrasadores
+// MAGALU CLONE - app.js v4.0
+// Imagens únicas e de qualidade por produto + troca por cor
 // ============================================================
 
 const PRODUCTS = [
-  // ══════ SMARTPHONES ══════
+
+  // ══════════════════════════════════════════
+  // SMARTPHONES
+  // ══════════════════════════════════════════
   {
-    id:1,category:'smartphones',brand:'Apple',
-    name:'iPhone 15 Pro Max 256GB Titânio Natural',
-    sku:'MLU0001',price:3899,oldPrice:9499,discount:59,rating:4.9,reviews:3847,
-    images:[
-      'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=500&h=500&fit=crop&q=85'
+    id: 1, category: 'smartphones', brand: 'Apple',
+    name: 'iPhone 16 128GB',
+    sku: 'MLU0001', price: 4299, oldPrice: 7999, discount: 46,
+    rating: 4.9, reviews: 5821,
+    // Imagem padrão (Azul) + gallery
+    images: [
+      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722',
+      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-ultramarine-angled-202409?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312994016',
     ],
-    variants:['Titânio Natural','Titânio Preto','Titânio Branco','Titânio Azul'],
-    highlights:['Chip A17 Pro (3nm)','Câmera 48MP zoom óptico 5x','Tela Super Retina XDR 6,7" 120Hz','Estrutura titânio grau aeroespacial','Botão de Ação personalizável','USB-C USB 3 (20Gb/s)','Bateria até 29h de vídeo'],
-    description:'O iPhone 15 Pro Max traz o chip A17 Pro fabricado em 3nm, câmera com zoom óptico 5x inédita na linha Pro Max, estrutura de titânio grau aeroespacial e o novo Botão de Ação personalizável. USB-C com velocidade USB 3 transfere dados a até 20Gb/s.',
-    specs:[['Tela','6,7" OLED 2796×1290px 460ppi 120Hz'],['CPU','Apple A17 Pro (3nm)'],['RAM','8GB'],['Armazenamento','256GB NVMe'],['Câmera','48MP f/1.78 + 12MP ultrawide + 12MP 5x'],['Bateria','4422mAh – 29h vídeo'],['Sistema','iOS 17'],['Proteção','IP68']],
-    reviewsData:[{user:'Carlos M.',rating:5,date:'12/11/2024',comment:'Câmera zoom 5x incrível. Bateria dura 2 dias no meu uso!'},{user:'Ana Paula S.',rating:5,date:'03/11/2024',comment:'Produto original lacrado. Tela linda, titânio premium.'}]
-  },
-  {
-    id:2,category:'smartphones',brand:'Samsung',
-    name:'Samsung Galaxy S24 Ultra 256GB 5G Titânio Preto',
-    sku:'MLU0002',price:2999,oldPrice:8299,discount:64,rating:4.8,reviews:2341,
-    images:[
-      'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1659107935946-50dfb8e31db4?w=500&h=500&fit=crop&q=85'
+    // Cada variante tem: label, cor CSS, imagem própria
+    variants: [
+      { label: 'Ultramarino', color: '#4f7dc2', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
+      { label: 'Preto',       color: '#1d1d1f', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-black?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
+      { label: 'Branco',      color: '#f5f5f0', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-white?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
+      { label: 'Rosa',        color: '#f4b8c1', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-pink?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
+      { label: 'Verde',       color: '#cde8d0', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-teal?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
     ],
-    variants:['Titânio Preto','Titânio Cinza','Titânio Violeta','Titânio Amarelo'],
-    highlights:['S Pen com Galaxy AI','Câmera 200MP zoom 10x','Dynamic AMOLED 2X 6,8" 120Hz','Snapdragon 8 Gen 3','12GB RAM + 256GB UFS 4.0','Bateria 5000mAh 45W','IP68'],
-    description:'Galaxy S24 Ultra com S Pen e Galaxy AI. Resuma documentos, traduza em tempo real e remova objetos de fotos. Câmera 200MP + zoom 10x captura cada detalhe com perfeição.',
-    specs:[['Tela','6,8" AMOLED 3088×1440px 501ppi 120Hz'],['CPU','Snapdragon 8 Gen 3 (4nm)'],['RAM','12GB'],['Armazenamento','256GB UFS 4.0'],['Câmera','200MP+12MP+10MP 3x+50MP 5x'],['Bateria','5000mAh – 45W'],['Sistema','Android 14 / One UI 6.1'],['Proteção','IP68']],
-    reviewsData:[{user:'Fernanda L.',rating:5,date:'15/11/2024',comment:'Câmera 200MP épica. S Pen com IA é diferencial enorme!'},{user:'Thiago B.',rating:5,date:'08/11/2024',comment:'Galaxy AI é surpreendentemente útil.'}]
-  },
-  {
-    id:3,category:'smartphones',brand:'Motorola',
-    name:'Motorola Edge 50 Pro 512GB 12GB RAM 5G Moonlight Pearl',
-    sku:'MLU0003',price:1299,oldPrice:3499,discount:63,rating:4.7,reviews:1203,
-    images:[
-      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=500&fit=crop&q=85'
-    ],
-    variants:['Moonlight Pearl','Black Beauty','Luxe Lavender'],
-    highlights:['pOLED curva 6,7" 144Hz','Câmera 50MP Sony OIS','Snapdragon 7 Gen 3 (4nm)','TurboPower 125W – 100% em 22min','12GB RAM + 512GB','Dolby Atmos estéreo','IP68'],
-    description:'Edge 50 Pro: carregamento TurboPower 125W vai de 0 a 100% em 22 minutos. Tela pOLED curva 144Hz e câmera Sony 50MP com estabilização óptica.',
-    specs:[['Tela','6,7" pOLED 2712×1220px 144Hz'],['CPU','Snapdragon 7 Gen 3'],['RAM','12GB LPDDR5'],['Armazenamento','512GB UFS 3.1'],['Câmera','50MP OIS+13MP+10MP 3x'],['Bateria','4500mAh TurboPower 125W'],['Sistema','Android 14'],['Proteção','IP68']],
-    reviewsData:[{user:'Lucas P.',rating:5,date:'20/11/2024',comment:'125W absurdo! 15 min e bateria para o dia todo.'}]
-  },
-  {
-    id:4,category:'smartphones',brand:'Xiaomi',
-    name:'Xiaomi 14 Ultra 512GB 16GB RAM Câmera Leica 5G Preto',
-    sku:'MLU0004',price:2499,oldPrice:6999,discount:64,rating:4.8,reviews:876,
-    images:[
-      'https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=500&h=500&fit=crop&q=85'
-    ],
-    variants:['Titânio Preto','Titânio Branco'],
-    highlights:['Sistema Leica Summilux 4 câmeras','Sensor Sony LYT-900 de 1 polegada','Snapdragon 8 Gen 3','HyperCharge 90W + sem fio 80W','AMOLED 6,73" 120Hz','16GB RAM + 512GB UFS 4.0'],
-    description:'Xiaomi 14 Ultra co-desenvolvido com Leica. Sensor Sony de 1 polegada com abertura variável f/1.63–f/4.0. HyperCharge 90W carrega 5000mAh em 35 minutos.',
-    specs:[['Tela','6,73" AMOLED 3200×1440px 120Hz'],['CPU','Snapdragon 8 Gen 3'],['RAM','16GB LPDDR5X'],['Armazenamento','512GB UFS 4.0'],['Câmera','4× 50MP – sensor 1" principal'],['Bateria','5000mAh 90W+sem fio 80W'],['Sistema','Android 14 HyperOS'],['Proteção','IP68']],
-    reviewsData:[{user:'Pedro A.',rating:5,date:'10/11/2024',comment:'Leica faz diferença absurda à noite. Sensor 1 polegada é incrível.'}]
-  },
-  {
-    id:5,category:'smartphones',brand:'Samsung',
-    name:'Samsung Galaxy A55 5G 256GB 8GB RAM Azul Escuro',
-    sku:'MLU0005',price:799,oldPrice:2199,discount:64,rating:4.6,reviews:2987,
-    images:[
-      'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500&h=500&fit=crop&q=85'
-    ],
-    variants:['Azul Escuro','Amarelo Limão','Prata Gelo','Branco'],
-    highlights:['Super AMOLED 6,6" 120Hz','Câmera 50MP OIS','5G alta velocidade','8GB RAM + 256GB','Bateria 5000mAh 25W','IP67 Gorilla Glass Victus+'],
-    description:'Galaxy A55 5G: o custo-benefício premium da Samsung. Tela Super AMOLED 120Hz, câmera 50MP com OIS, conectividade 5G e proteção IP67.',
-    specs:[['Tela','6,6" Super AMOLED 2340×1080px 120Hz'],['CPU','Exynos 1480 (4nm)'],['RAM','8GB'],['Armazenamento','256GB UFS 2.2'],['Câmera','50MP OIS+12MP+5MP'],['Bateria','5000mAh 25W'],['Sistema','Android 14 One UI 6.1'],['Proteção','IP67']],
-    reviewsData:[{user:'Renata C.',rating:5,date:'22/11/2024',comment:'Melhor custo-benefício. Tela linda e câmera excelente!'}]
+    highlights: ['Chip A18 (3nm)', 'Câmera Fusion 48MP', 'Controle de Câmera físico', 'Tela 6,1" Super Retina XDR 60Hz', 'USB-C', 'Bateria até 22h vídeo', 'IP68 – 6m por 30min'],
+    description: 'iPhone 16 com chip A18, o mais avançado já colocado num iPhone padrão. O novo Controle de Câmera permite tirar fotos e gravar vídeos com um toque intuitivo. Câmera Fusion de 48MP com zoom óptico 2x e gravação 4K Dolby Vision a 120fps.',
+    specs: [['Tela','6,1" OLED 2556×1179px 460ppi'],['CPU','Apple A18 (3nm)'],['RAM','8GB'],['Armazenamento','128GB'],['Câmera','48MP Fusion + 12MP ultrawide'],['Bateria','3561mAh – 22h vídeo'],['Sistema','iOS 18'],['Proteção','IP68 – 6m/30min']],
+    reviewsData: [{ user: 'Carla M.', rating: 5, date: '20/11/2024', comment: 'O Controle de Câmera é fantástico. Muito mais prático para fotos.' }, { user: 'Paulo R.', rating: 5, date: '15/11/2024', comment: 'Melhor iPhone que já tive. Bateria dura muito mais que o 14.' }]
   },
 
-  // ══════ NOTEBOOKS ══════
   {
-    id:6,category:'notebooks',brand:'Dell',
-    name:'Notebook Dell XPS 15 Core i9 32GB 1TB RTX 4070 OLED 15,6"',
-    sku:'MLU0006',price:5999,oldPrice:16499,discount:64,rating:4.9,reviews:634,
-    images:[
-      'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&h=500&fit=crop&q=85'
+    id: 2, category: 'smartphones', brand: 'Apple',
+    name: 'iPhone 16 Pro Max 256GB',
+    sku: 'MLU0002', price: 7299, oldPrice: 10999, discount: 34,
+    rating: 4.9, reviews: 4203,
+    images: [
+      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-deserttitanium?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722',
+      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-deserttitanium-angled-202409?wid=800&hei=800&fmt=p-jpg&qlt=95',
     ],
-    variants:['Prata Platina','Preto Carbono'],
-    highlights:['Intel Core i9-13900H 14 núcleos','RTX 4070 8GB GDDR6','32GB DDR5 5200MHz','SSD 1TB PCIe Gen 4','OLED 3.5K 15,6" 100% DCI-P3','Bateria 86Wh até 13h','1,86kg'],
-    description:'Dell XPS 15 com tela OLED 3.5K 100% DCI-P3 para design, foto e vídeo com cores absolutamente precisas. Core i9 + RTX 4070 para renderização 3D e edição 4K.',
-    specs:[['Tela','15,6" OLED 3456×2160px 60Hz 100% DCI-P3'],['CPU','Intel Core i9-13900H (5,4GHz)'],['RAM','32GB DDR5 5200MHz'],['Armazenamento','1TB NVMe PCIe Gen 4'],['GPU','RTX 4070 8GB GDDR6'],['Bateria','86Wh – até 13h'],['Sistema','Windows 11 Home'],['Peso','1,86kg']],
-    reviewsData:[{user:'Renata M.',rating:5,date:'05/11/2024',comment:'OLED de fábrica perfeito para design gráfico.'},{user:'André S.',rating:5,date:'29/10/2024',comment:'Projetos 3D que levavam horas, agora minutos!'}]
-  },
-  {
-    id:7,category:'notebooks',brand:'Apple',
-    name:'MacBook Pro 14" M3 Pro 18GB 512GB SSD Preto Espacial',
-    sku:'MLU0007',price:6499,oldPrice:17999,discount:64,rating:4.9,reviews:1247,
-    images:[
-      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500&h=500&fit=crop&q=85'
+    variants: [
+      { label: 'Titânio Deserto', color: '#c8a882', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-deserttitanium?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
+      { label: 'Titânio Natural', color: '#e3d0be', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-naturaltitanium?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
+      { label: 'Titânio Branco',  color: '#f5f0eb', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-whitetitanium?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
+      { label: 'Titânio Preto',   color: '#3a3a3c', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-blacktitanium?wid=800&hei=800&fmt=p-jpg&qlt=95&.v=1723312958722' },
     ],
-    variants:['Preto Espacial','Prateado'],
-    highlights:['Chip M3 Pro CPU 11 núcleos / GPU 14 núcleos','18GB memória unificada','SSD NVMe 512GB','Liquid Retina XDR 14,2" 120Hz ProMotion','Até 22h de bateria','HDMI 2.1 + SD + 3× Thunderbolt 4'],
-    description:'MacBook Pro M3 Pro com 22h de autonomia e desempenho extraordinário. Tela Liquid Retina XDR brilha com 1600nits de pico. Novo acabamento Preto Espacial exclusivo.',
-    specs:[['Tela','14,2" Liquid Retina XDR 3024×1964px 120Hz'],['CPU','Apple M3 Pro (11CPU/14GPU)'],['Memória','18GB unificada'],['Armazenamento','512GB NVMe'],['Bateria','até 22 horas'],['Portas','3×TB4, HDMI 2.1, SD, MagSafe 3'],['Sistema','macOS Sonoma'],['Peso','1,61kg']],
-    reviewsData:[{user:'Carolina F.',rating:5,date:'18/11/2024',comment:'Compilações que levavam 40s agora levam 12s. Liquid Retina XDR incomparável.'}]
-  },
-  {
-    id:8,category:'notebooks',brand:'Lenovo',
-    name:'Notebook Lenovo Legion 5i Pro Core i7 32GB RTX 4060 165Hz 16"',
-    sku:'MLU0008',price:3799,oldPrice:9999,discount:62,rating:4.8,reviews:891,
-    images:[
-      'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1542393545-10f5cde2c810?w=500&h=500&fit=crop&q=85'
-    ],
-    variants:['Storm Grey'],
-    highlights:['Intel Core i7-13700HX 16 núcleos','RTX 4060 8GB GDDR6','32GB DDR5 5600MHz','SSD 1TB PCIe Gen 4','IPS 16" 2560×1600 165Hz','ColdFront 5.0 resfriamento extremo'],
-    description:'Legion 5i Pro: a besta do gaming. ColdFront 5.0 com 4 dissipadores. RTX 4060 + Core i7-13700HX garantem alto FPS nos jogos mais exigentes.',
-    specs:[['Tela','16" IPS 2560×1600px 165Hz'],['CPU','Core i7-13700HX (16 núcleos)'],['RAM','32GB DDR5 5600MHz'],['Armazenamento','1TB NVMe Gen 4'],['GPU','RTX 4060 8GB GDDR6'],['Bateria','80Wh 135W'],['Sistema','Windows 11 Home']],
-    reviewsData:[{user:'Diego M.',rating:5,date:'16/11/2024',comment:'Tudo no ultra sem engasgar. Resfriamento excepcional!'}]
+    highlights: ['Chip A18 Pro (3nm)', 'Câmera 48MP zoom óptico 5x Tetra‑prism', 'Tela ProMotion XDR 6,9" 1–120Hz', 'Controle de Câmera', 'Gravação 4K 120fps Dolby Vision', 'Botão de Ação', 'Titanium grau aeroespacial'],
+    description: 'iPhone 16 Pro Max: o iPhone mais avançado de todos os tempos. Tela ProMotion 6,9", câmera com zoom 5x Tetra-prism, chip A18 Pro e novo Controle de Câmera para gravação profissional 4K 120fps Dolby Vision.',
+    specs: [['Tela','6,9" ProMotion OLED 2868×1320px 1–120Hz'],['CPU','Apple A18 Pro (3nm)'],['RAM','8GB'],['Armazenamento','256GB'],['Câmera','48MP + 48MP ultrawide + 12MP 5x'],['Bateria','4685mAh – 33h vídeo'],['Sistema','iOS 18'],['Proteção','IP68 – 6m/30min']],
+    reviewsData: [{ user: 'Lucas F.', rating: 5, date: '18/11/2024', comment: 'Câmera com zoom 5x é absurda. Gravei vídeos de shows com qualidade cinema.' }, { user: 'Beatriz N.', rating: 5, date: '12/11/2024', comment: 'A tela ProMotion 6,9" é a mais bonita que já vi num celular.' }]
   },
 
-  // ══════ TVs ══════
   {
-    id:9,category:'tvs',brand:'LG',
-    name:'Smart TV LG OLED evo C3 65" 4K 120Hz Dolby Vision webOS 23',
-    sku:'MLU0009',price:2799,oldPrice:7999,discount:65,rating:4.9,reviews:2134,
-    images:[
-      'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500&h=500&fit=crop&q=85'
+    id: 3, category: 'smartphones', brand: 'Samsung',
+    name: 'Samsung Galaxy S25 Ultra 256GB 5G',
+    sku: 'MLU0003', price: 6499, oldPrice: 9999, discount: 35,
+    rating: 4.8, reviews: 2891,
+    images: [
+      'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-ultra-sm-s938-sm-s938bzkcbro-thumb-544342679?$650_519_PNG$',
+      'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-ultra-sm-s938-sm-s938bzkcbro-544342680?$650_519_PNG$',
     ],
-    variants:['55"','65"','77"','83"'],
-    highlights:['OLED auto-iluminado – preto absoluto','Processador α9 Gen6 AI','Dolby Vision IQ + Dolby Atmos','120Hz NVIDIA G-Sync','4× HDMI 2.1 (48Gbps)','webOS 23 ThinQ AI','Input lag 1ms gamer'],
-    description:'LG OLED evo C3: a melhor TV segundo especialistas. Preto absoluto, contraste infinito. 4× HDMI 2.1 e 1ms input lag para PS5 e Xbox Series X.',
-    specs:[['Tamanho','65 pol. (163cm)'],['Resolução','4K 3840×2160px'],['Painel','OLED evo auto-iluminado'],['Taxa','120Hz G-Sync FreeSync'],['HDR','Dolby Vision IQ, HDR10, HLG'],['Áudio','60W Dolby Atmos'],['Smart TV','webOS 23, ThinQ AI, AirPlay 2'],['HDMI','4× HDMI 2.1 48Gbps']],
-    reviewsData:[{user:'Marcos R.',rating:5,date:'12/11/2024',comment:'PS5 nessa TV é transcendental. 1ms+120Hz perfeito.'},{user:'Silvia T.',rating:5,date:'05/11/2024',comment:'Preto absoluto OLED transforma qualquer filme.'}]
-  },
-  {
-    id:10,category:'tvs',brand:'Samsung',
-    name:'Smart TV Samsung Neo QLED 8K 75" QN900C 240Hz Atmos',
-    sku:'MLU0010',price:4999,oldPrice:18999,discount:74,rating:4.8,reviews:432,
-    images:[
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1571415060716-baff5f717c37?w=500&h=500&fit=crop&q=85'
+    variants: [
+      { label: 'Titanium Black',      color: '#2d2d2d', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-ultra-sm-s938-sm-s938bzkcbro-thumb-544342679?$650_519_PNG$' },
+      { label: 'Titanium Silver Blue', color: '#8fa3b8', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-ultra-sm-s938-sm-s938bzsdbro-thumb-544342601?$650_519_PNG$' },
+      { label: 'Titanium White Silver',color: '#e8e8e8', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-ultra-sm-s938-sm-s938bzsebro-thumb-544342605?$650_519_PNG$' },
+      { label: 'Titanium Gray',        color: '#8a8a8a', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-ultra-sm-s938-sm-s938bzaabro-thumb-544342593?$650_519_PNG$' },
     ],
-    variants:['65"','75"','85"'],
-    highlights:['8K 7680×4320px Neural Quantum IA','240Hz taxa de atualização','Neo QLED Mini LEDs','Dolby Atmos OTS+','Design Infinity One','Tizen OS + SmartThings'],
-    description:'Samsung Neo QLED 8K com Neural Quantum 8K Gen2 que upscala conteúdo em tempo real. Mini LEDs criam contraste e brilho sem igual.',
-    specs:[['Tamanho','75 polegadas'],['Resolução','8K 7680×4320px'],['Painel','Neo QLED Mini LED'],['Taxa','240Hz'],['Áudio','70W Dolby Atmos'],['Smart TV','Tizen, Bixby, Alexa, Google'],['HDMI','4× HDMI 2.1']],
-    reviewsData:[{user:'Eduardo C.',rating:5,date:'20/11/2024',comment:'8K impressionante mesmo em 4K. Design deslumbrante.'}]
+    highlights: ['Snapdragon 8 Elite for Galaxy', 'S Pen integrada com Galaxy AI', 'Câmera 200MP zoom óptico 10x', 'Dynamic AMOLED 2X 6,9" 120Hz', '12GB RAM + 256GB UFS 4.0', 'Bateria 5000mAh carga 45W', 'IP68 Armor Aluminum 2'],
+    description: 'Galaxy S25 Ultra: S Pen + Galaxy AI no dispositivo mais poderoso da Samsung. Snapdragon 8 Elite, câmera 200MP com zoom 10x e Dynamic AMOLED 2X de 6,9 polegadas.',
+    specs: [['Tela','6,9" Dynamic AMOLED 2X 3088×1440px 120Hz'],['CPU','Snapdragon 8 Elite (3nm)'],['RAM','12GB'],['Armazenamento','256GB UFS 4.0'],['Câmera','200MP+50MP+10MP 3x+50MP 5x'],['Bateria','5000mAh – 45W'],['Sistema','Android 15 / One UI 7'],['Proteção','IP68']],
+    reviewsData: [{ user: 'Fernanda A.', rating: 5, date: '22/01/2025', comment: 'Galaxy AI melhorou muito! Resumir e traduzir on-device é incrível.' }, { user: 'Roberto C.', rating: 5, date: '18/01/2025', comment: 'S Pen com IA é um diferencial absurdo para produtividade.' }]
   },
 
-  // ══════ GAMES ══════
   {
-    id:11,category:'games',brand:'Sony',
-    name:'PlayStation 5 Slim Console Disco 1TB SSD + Controle DualSense',
-    sku:'MLU0011',price:2799,oldPrice:4799,discount:42,rating:4.9,reviews:5782,
-    images:[
-      'https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1622297845775-5ff3fef71d13?w=500&h=500&fit=crop&q=85'
+    id: 4, category: 'smartphones', brand: 'Samsung',
+    name: 'Samsung Galaxy S25+ 256GB 5G',
+    sku: 'MLU0004', price: 4799, oldPrice: 7499, discount: 36,
+    rating: 4.8, reviews: 1876,
+    images: [
+      'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-sm-s936-sm-s936bzkdbro-thumb-544342411?$650_519_PNG$',
     ],
-    variants:['Edição Disco','Edição Digital'],
-    highlights:['SSD 825GB – carregamentos instantâneos','Resolução até 8K, 120fps','Ray Tracing em tempo real','DualSense feedback tátil + gatilhos adaptativos','Tempest 3D AudioTech','Retrocompatível com PS4','Design Slim 30% menor'],
-    description:'PS5 Slim com carregamentos instantâneos, ray tracing e DualSense que transforma completamente a experiência de jogar com feedback háptico e gatilhos adaptativos.',
-    specs:[['CPU','AMD Zen 2 – 8 núcleos 3,5GHz'],['GPU','AMD RDNA 2 – 10,3 TF'],['RAM','16GB GDDR6'],['Armazenamento','SSD NVMe 825GB'],['Resolução','até 8K / 120fps'],['Áudio','Tempest 3D AudioTech'],['Mídia','Blu-ray 4K Ultra HD']],
-    reviewsData:[{user:'Gabriel N.',rating:5,date:'22/11/2024',comment:'Gatilhos adaptativos são revolucionários. Imersão total!'},{user:'Patricia O.',rating:5,date:'15/11/2024',comment:'Filho ficou radiante! Slim é mais fácil de encaixar no rack.'}]
-  },
-  {
-    id:12,category:'games',brand:'Microsoft',
-    name:'Xbox Series X Console 1TB SSD 4K 120fps HDR Preto',
-    sku:'MLU0012',price:2599,oldPrice:4299,discount:40,rating:4.8,reviews:2341,
-    images:[
-      'https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1617096200347-cb04ae810b1d?w=500&h=500&fit=crop&q=85'
+    variants: [
+      { label: 'Iceberg Blue', color: '#a8c4d4', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-sm-s936-sm-s936bzbdbro-thumb-544342403?$650_519_PNG$' },
+      { label: 'Mint',         color: '#b2d8c8', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-sm-s936-sm-s936bzgdbro-thumb-544342407?$650_519_PNG$' },
+      { label: 'Phantom Black',color: '#1a1a1a', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-sm-s936-sm-s936bzkdbro-thumb-544342411?$650_519_PNG$' },
+      { label: 'Silver Shadow', color: '#d4d4d4', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/2501/gallery/br-galaxy-s25-sm-s936-sm-s936bzsdbro-thumb-544342415?$650_519_PNG$' },
     ],
-    variants:['Preto'],
-    highlights:['4K 60fps / 1080p 120fps','SSD NVMe 1TB Velocity Architecture','12 teraflops de poder gráfico','Quick Resume – múltiplos jogos','Retrocompat. 4 gerações Xbox','Auto HDR + FPS Boost automático'],
-    description:'Xbox Series X: o console mais poderoso da Microsoft. Quick Resume troca entre jogos em segundos. Biblioteca de milhares de títulos com melhorias automáticas de HDR e framerate.',
-    specs:[['CPU','AMD Zen 2 – 8 núcleos 3,8GHz'],['GPU','AMD RDNA 2 – 12 TF'],['RAM','16GB GDDR6'],['Armazenamento','SSD NVMe 1TB'],['Resolução','até 8K upscaling / 120fps'],['Mídia','UHD Blu-ray 4K'],['Conectividade','HDMI 2.1, USB×3, Wi-Fi 6']],
-    reviewsData:[{user:'Rodrigo A.',rating:5,date:'18/11/2024',comment:'Quick Resume é funcionalidade que não vivo mais sem!'}]
-  },
-  {
-    id:13,category:'games',brand:'Nintendo',
-    name:'Nintendo Switch OLED 64GB Branco Tela OLED 7" Desbloqueado',
-    sku:'MLU0013',price:1799,oldPrice:2999,discount:40,rating:4.9,reviews:6231,
-    images:[
-      'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=500&h=500&fit=crop&q=85'
-    ],
-    variants:['Branco','Neon'],
-    highlights:['Tela OLED 7" cores vibrantes','64GB armazenamento interno','Dock HDMI saída na TV','Autonomia até 9h portátil','Joy-Con HD Rumble','Suporte ajustável amplo','Compatível todos jogos Switch'],
-    description:'Nintendo Switch OLED com tela 7" de cores vibrantes e preto profundo. 64GB de armazenamento e dock melhorado com porta LAN cabeada.',
-    specs:[['Tela','7" OLED 1280×720px'],['Saída TV','1080p via HDMI'],['Armazenamento','64GB + microSDXC'],['Bateria','4310mAh – 4,5h a 9h'],['Conectividade','Wi-Fi 5, Bluetooth 4.1'],['Peso','320g (sem Joy-Con)']],
-    reviewsData:[{user:'Felipe A.',rating:5,date:'23/11/2024',comment:'Tela OLED linda para jogar no portátil. Zelda é de tirar o fôlego!'}]
+    highlights: ['Snapdragon 8 Elite for Galaxy', 'Câmera tripla 50MP OIS', 'AMOLED 2X 6,7" 120Hz', '12GB RAM + 256GB', 'Bateria 4900mAh 45W', 'Carregamento sem fio 15W', 'IP68'],
+    description: 'Galaxy S25+ com Snapdragon 8 Elite e câmera tripla 50MP. Display AMOLED 2X de 6,7" brilhante, fino e leve. Galaxy AI embarcada para tarefas inteligentes.',
+    specs: [['Tela','6,7" AMOLED 2X 3088×1440px 120Hz'],['CPU','Snapdragon 8 Elite'],['RAM','12GB'],['Armazenamento','256GB'],['Câmera','50MP OIS + 12MP + 10MP 3x'],['Bateria','4900mAh 45W'],['Sistema','Android 15 One UI 7'],['Proteção','IP68']],
+    reviewsData: [{ user: 'Thiago M.', rating: 5, date: '20/01/2025', comment: 'Design elegantíssimo e desempenho impecável. Tela linda!' }]
   },
 
-  // ══════ ÁUDIO ══════
   {
-    id:14,category:'audio',brand:'Sony',
-    name:'Fone Sony WH-1000XM5 Bluetooth ANC 30h Noise Cancelling Preto',
-    sku:'MLU0014',price:899,oldPrice:2499,discount:64,rating:4.9,reviews:3201,
-    images:[
-      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500&h=500&fit=crop&q=85'
+    id: 5, category: 'smartphones', brand: 'Samsung',
+    name: 'Samsung Galaxy A56 5G 128GB 8GB RAM',
+    sku: 'MLU0005', price: 1799, oldPrice: 2999, discount: 40,
+    rating: 4.7, reviews: 3214,
+    images: [
+      'https://images.samsung.com/is/image/samsung/p6pim/br/sm-a566blbpzto/gallery/br-galaxy-a56-5g-sm-a566-thumb?$650_519_PNG$',
     ],
-    variants:['Preto','Prata'],
-    highlights:['Melhor ANC do mundo – 8 microfones','2 processadores dedicados ANC','Drivers 30mm exclusivos','30h bateria com ANC','Carga rápida: 3min = 3h uso','LDAC hi-res audio 990kbps','Estojo dobrável incluído'],
-    description:'Sony WH-1000XM5: eleito melhor fone ANC do mundo. 8 microfones + 2 processadores eliminam virtualmente qualquer ruído. LDAC transmite áudio 3× mais detalhado que Bluetooth convencional.',
-    specs:[['Driver','30mm circular'],['Frequência','4Hz – 40kHz'],['ANC','8 microfones + 2 processadores'],['Bateria','30h ANC / 40h sem ANC'],['Carga','USB-C – 3min=3h'],['Codecs','LDAC, AAC, SBC'],['Conexão','Bluetooth 5.2 + P2'],['Peso','250g']],
-    reviewsData:[{user:'Amanda V.',rating:5,date:'14/11/2024',comment:'Em voos internacionais não ouço nada do motor. Épico!'},{user:'Henrique D.',rating:5,date:'07/11/2024',comment:'Trabalho em casa com filhos. Coloco e entro em outro mundo.'}]
-  },
-  {
-    id:15,category:'audio',brand:'JBL',
-    name:'Caixa de Som JBL Charge 5 Bluetooth 40W IPX7 20h Preta',
-    sku:'MLU0015',price:699,oldPrice:1499,discount:53,rating:4.8,reviews:4821,
-    images:[
-      'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&h=500&fit=crop&q=85'
+    variants: [
+      { label: 'Azul',   color: '#3d7abf', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/sm-a566blbpzto/gallery/br-galaxy-a56-5g-sm-a566-thumb?$650_519_PNG$' },
+      { label: 'Branco', color: '#f0f0f0', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/sm-a566bzwpzto/gallery/br-galaxy-a56-5g-sm-a566-thumb?$650_519_PNG$' },
+      { label: 'Preto',  color: '#1a1a1a', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/sm-a566bzkpzto/gallery/br-galaxy-a56-5g-sm-a566-thumb?$650_519_PNG$' },
     ],
-    variants:['Preta','Azul','Vermelha','Squad'],
-    highlights:['40W RMS potência','Bluetooth 5.1 alcance 10m','20h de autonomia','Carrega dispositivos USB','IPX7 – 1m por 30min','PartyBoost múltiplas caixas'],
-    description:'JBL Charge 5: 40W de som imersivo, 20h de bateria, IPX7 submersível e carrega seu celular via USB. PartyBoost conecta múltiplas caixas.',
-    specs:[['Potência','40W RMS'],['Frequência','65Hz – 20kHz'],['Bluetooth','5.1 – 10m'],['Bateria','20 horas'],['Resistência','IPX7'],['Carga externa','USB-A 5V/2.4A'],['Dimensões','220×96×97mm, 960g']],
-    reviewsData:[{user:'Camila S.',rating:5,date:'09/11/2024',comment:'Levei para a praia, submergi de bobeira e funcionou perfeitamente!'}]
-  },
-  {
-    id:16,category:'audio',brand:'Apple',
-    name:'AirPods Pro 2ª Geração USB-C ANC Áudio Espacial Branco',
-    sku:'MLU0016',price:1299,oldPrice:2499,discount:48,rating:4.9,reviews:7812,
-    images:[
-      'https://images.unsplash.com/photo-1606741965429-02919b2e5b4c?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=500&h=500&fit=crop&q=85'
-    ],
-    variants:['Branco'],
-    highlights:['ANC chip H2 nível profissional','Modo Transparência adaptativa','Áudio Espacial Personalizado','30h total com case USB-C','IPX4 fone + IPX4 case','Volume adaptativo ao ambiente'],
-    description:'AirPods Pro 2ª Geração com chip H2: ANC duas vezes mais potente. Modo Transparência adaptativa, Áudio Espacial com rastreamento de cabeça e case USB-C.',
-    specs:[['Chip','Apple H2'],['Bateria','6h (fone) + 24h (case) = 30h'],['Resistência','IPX4 (fone + case)'],['Conectividade','Bluetooth 5.3'],['Case','USB-C + MagSafe + Apple Watch'],['Peso','5,3g/fone + 50,3g case']],
-    reviewsData:[{user:'Tatiana R.',rating:5,date:'21/11/2024',comment:'ANC épico, melhor que qualquer TWS que já tive!'},{user:'Gustavo P.',rating:5,date:'14/11/2024',comment:'Modo Transparência adaptativa é mágico.'}]
+    highlights: ['Super AMOLED+ 6,7" 120Hz FHD+', 'Exynos 1580 (4nm)', 'Câmera 50MP OIS', '5G ultrarrápido', '8GB RAM + 128GB', 'Bateria 5000mAh 45W', 'IP67 Gorilla Glass Victus+'],
+    description: 'Galaxy A56 5G com Exynos 1580, tela Super AMOLED+ 120Hz e câmera 50MP com OIS. O custo-benefício premium da Samsung com 5G e carregamento rápido 45W.',
+    specs: [['Tela','6,7" Super AMOLED+ FHD+ 120Hz'],['CPU','Exynos 1580 (4nm)'],['RAM','8GB'],['Armazenamento','128GB'],['Câmera','50MP OIS + 12MP + 5MP'],['Bateria','5000mAh 45W'],['Sistema','Android 15 One UI 7'],['Proteção','IP67']],
+    reviewsData: [{ user: 'Camila S.', rating: 5, date: '10/02/2025', comment: 'Tela linda e câmera muito boa para o preço. Custo-benefício imbatível!' }]
   },
 
-  // ══════ WEARABLES ══════
   {
-    id:17,category:'wearables',brand:'Apple',
-    name:'Apple Watch Series 9 GPS 45mm Alumínio Midnight Sport Band',
-    sku:'MLU0017',price:2199,oldPrice:3999,discount:45,rating:4.8,reviews:4123,
-    images:[
-      'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500&h=500&fit=crop&q=85'
+    id: 6, category: 'smartphones', brand: 'Motorola',
+    name: 'Motorola Edge 50 Pro 512GB 12GB RAM 5G',
+    sku: 'MLU0006', price: 1899, oldPrice: 3499, discount: 46,
+    rating: 4.7, reviews: 1543,
+    images: [
+      'https://motorola-global-portal.custhelp.com/ci/fattach/get/1154694/0/filename/Edge%2050%20Pro_Black.jpg',
     ],
-    variants:['Midnight 41mm','Midnight 45mm','Starlight 41mm','Pink 41mm'],
-    highlights:['Chip S9 – Siri 100% no dispositivo','Gesto Double Tap mão única','Always-On 2000 nits legível ao sol','Temperatura + ECG + SpO2','Detecção acidente e queda','Carregamento USB-C','WR50 – 50 metros'],
-    description:'Apple Watch Series 9 com chip S9 que processa Siri on-device. Novo Double Tap controla o relógio com uma mão. ECG, SpO2 e temperatura do pulso.',
-    specs:[['Tamanho','45mm'],['Chip','S9 SiP dual-core'],['Tela','LTPO OLED Always-On 2000nits'],['GPS','L1+L5 Dual-band'],['Sensores','ECG, SpO2, Temperatura, Altímetro'],['Bateria','18h / 36h Low Power'],['Carga','USB-C MagSafe'],['Resistência','WR50']],
-    reviewsData:[{user:'Isabela C.',rating:5,date:'19/11/2024',comment:'Double Tap mudou tudo. Controlo músicas com uma mão!'},{user:'Bruno F.',rating:5,date:'11/11/2024',comment:'GPS L5 muito mais preciso para corridas.'}]
-  },
-  {
-    id:18,category:'wearables',brand:'Samsung',
-    name:'Galaxy Watch 6 Classic 47mm 4G LTE Preto NFC Bluetooth',
-    sku:'MLU0018',price:1299,oldPrice:2799,discount:54,rating:4.7,reviews:1876,
-    images:[
-      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500&h=500&fit=crop&q=85'
+    variants: [
+      { label: 'Black Beauty',    color: '#1a1a1a', img: 'https://lh3.googleusercontent.com/Jab27h3ixbJPBHMjAC4UcHcVfzxHXE_R6FnPc9j9xvnxGR2R5RxB1dpLEMJ7FBm4MRYS0cSWvPAtqBjbv2Qk=s1000' },
+      { label: 'Moonlight Pearl', color: '#e8e4f0', img: 'https://lh3.googleusercontent.com/6y1V0G4IbEb3_9bSETLT2b3XxCqQpwm1x5pHhM3I-VnY2JNRhMa9x0c2v1vMGGhJq8PGY9_y1NnVABRGrpY=s1000' },
+      { label: 'Luxe Lavender',   color: '#c9b8d8', img: 'https://lh3.googleusercontent.com/EGzAtXiW9hvj9k_rMqREjQTSL0VJT_e7OHIF12f8Dg6OXFJZJw3mCJpPaKLq-pSA0JH4HfnS7TrJVAB3rdE=s1000' },
     ],
-    variants:['Preto 43mm','Preto 47mm','Prata 43mm','Prata 47mm'],
-    highlights:['Moldura giratória clássica','Super AMOLED 1,5" 480×480px','Monitoramento avançado de sono','ECG + pressão arterial','Bateria até 40h','4G LTE independente do celular','Wear OS + One UI Watch 5'],
-    description:'Galaxy Watch 6 Classic com moldura giratória icônica. Monitoramento de sono com análise de fases, ECG e pressão arterial. 4G LTE funciona sem o smartphone.',
-    specs:[['Tamanho','47mm'],['Tela','Super AMOLED 1,5" 480×480px'],['Bateria','425mAh – até 40h'],['Resistência','5ATM + IP68 + MIL-STD-810T'],['Conectividade','4G LTE, Wi-Fi, BT 5.3, NFC'],['Armazenamento','16GB']],
-    reviewsData:[{user:'Marina L.',rating:5,date:'24/11/2024',comment:'Moldura giratória muito prática. Monitoramento de sono preciso e detalhado.'}]
+    highlights: ['pOLED curva 6,7" 144Hz', 'Câmera 50MP Sony LYTIA OIS', 'Snapdragon 7 Gen 3 (4nm)', 'TurboPower 125W – 100% em 22min', '12GB RAM + 512GB', 'Alto-falante estéreo Dolby Atmos', 'IP68'],
+    description: 'Motorola Edge 50 Pro: pOLED curva de 144Hz, câmera Sony LYTIA com OIS e TurboPower 125W que vai de 0 a 100% em apenas 22 minutos.',
+    specs: [['Tela','6,7" pOLED curva 2712×1220px 144Hz'],['CPU','Snapdragon 7 Gen 3'],['RAM','12GB LPDDR5'],['Armazenamento','512GB'],['Câmera','50MP Sony + 13MP + 10MP 3x'],['Bateria','4500mAh TurboPower 125W'],['Sistema','Android 14'],['Proteção','IP68']],
+    reviewsData: [{ user: 'Lucas P.', rating: 5, date: '14/11/2024', comment: '125W é absurdo! Carrego em 20 minutos e vou o dia todo.' }]
   },
 
-  // ══════ CÂMERAS ══════
   {
-    id:19,category:'cameras',brand:'Sony',
-    name:'Câmera Sony ZV-E10 APS-C 24.2MP Vlog 4K Branca + Lente 16-50mm',
-    sku:'MLU0019',price:2399,oldPrice:4999,discount:52,rating:4.8,reviews:987,
-    images:[
-      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=500&h=500&fit=crop&q=85'
+    id: 7, category: 'smartphones', brand: 'Xiaomi',
+    name: 'Xiaomi 15 Ultra 512GB 16GB RAM 5G Câmera Leica',
+    sku: 'MLU0007', price: 4999, oldPrice: 8999, discount: 44,
+    rating: 4.9, reviews: 987,
+    images: [
+      'https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0/pms_1739353386.01261734.png',
     ],
-    variants:['Branca + 16-50mm','Preta + 16-50mm','Branca (corpo)'],
-    highlights:['Sensor APS-C CMOS 24.2MP','4K 30fps sem crop','Bokeh fácil com um toque','Microfone 3 cápsulas direcional','Estabilização eletrônica','Autofoco rosto/olhos em tempo real','Compatível todas lentes Sony E-mount'],
-    description:'Sony ZV-E10: câmera perfeita para criadores de conteúdo. Sensor APS-C 24.2MP, 4K sem crop, microfone direcional e modo de desenfoque automático.',
-    specs:[['Sensor','APS-C CMOS 24.2MP'],['Vídeo','4K 30fps / 1080p 120fps'],['AF','Rastreamento rosto/olhos em tempo real'],['Microfone','3 cápsulas direcional + P2'],['Tela','3" touch articulada'],['ISO','100–32000'],['Bateria','NP-FW50 – 280 disparos'],['Peso','343g']],
-    reviewsData:[{user:'Bruna F.',rating:5,date:'17/11/2024',comment:'Vídeo incrível para YouTube. Microfone muito melhor que smartphones.'}]
-  },
-  {
-    id:20,category:'cameras',brand:'Canon',
-    name:'Câmera Canon EOS R50 24.2MP Vídeo 4K Corpo Preto',
-    sku:'MLU0020',price:3499,oldPrice:6999,discount:50,rating:4.8,reviews:654,
-    images:[
-      'https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1471897488648-5eae4ac6686b?w=500&h=500&fit=crop&q=85'
+    variants: [
+      { label: 'Titanium Black', color: '#2a2a2a', img: 'https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0/pms_1739353386.01261734.png' },
+      { label: 'Titanium White', color: '#f0ede8', img: 'https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0/pms_1739353437.30199738.png' },
     ],
-    variants:['Preta (corpo)','Branca (corpo)','Preta + RF-S 18-45mm'],
-    highlights:['Sensor APS-C 24.2MP DIGIC X','4K 30fps com Dual Pixel AF II','AF em Sujeto/Olhos ultrarrápido','15 quadros por segundo rafaga','Wi-Fi + Bluetooth integrados','Tela touchscreen articulada 3"','Sistema RF-S compacto e leve'],
-    description:'Canon EOS R50: a mirrorless mais leve e compacta da Canon. DIGIC X, 4K com Dual Pixel AF II e sistema de AF em sujeito dos mais rápidos do mercado.',
-    specs:[['Sensor','APS-C CMOS 24.2MP'],['Processador','DIGIC X'],['Vídeo','4K UHD 30fps / 1080p 120fps'],['AF','Dual Pixel CMOS AF II – Sujeito/Olhos'],['Rafaga','15fps RAW/JPEG'],['Wi-Fi','802.11 b/g/n + Bluetooth 4.2'],['Bateria','LP-E17 – 370 disparos'],['Peso','375g com bateria']],
-    reviewsData:[{user:'Rafael M.',rating:5,date:'15/11/2024',comment:'AF em sujeito é de outro mundo. Tracks tudo que move com precisão incrível.'}]
+    highlights: ['Chip Snapdragon 8 Elite (3nm)', 'Leica Summilux 4 câmeras', 'Sensor Sony LYT-900 de 1 polegada', 'HyperCharge 90W + sem fio 80W', 'AMOLED 6,73" 120Hz 3200×1440px', '16GB LPDDR5X + 512GB UFS 4.0', 'Vidro Xiaomi Shield Glass 2.0'],
+    description: 'Xiaomi 15 Ultra co-desenvolvido com Leica. Sensor Sony de 1 polegada, abertura variável f/1.63–f/4.0, Snapdragon 8 Elite e HyperCharge 90W que carrega 5500mAh em 35 minutos.',
+    specs: [['Tela','6,73" AMOLED 3200×1440px 120Hz'],['CPU','Snapdragon 8 Elite (3nm)'],['RAM','16GB LPDDR5X'],['Armazenamento','512GB UFS 4.0'],['Câmera','50MP f/1.63 sensor 1" + 50MP + 50MP 3x + 50MP 5x'],['Bateria','5500mAh 90W + sem fio 80W'],['Sistema','Android 15 HyperOS 2'],['Proteção','IP68']],
+    reviewsData: [{ user: 'Pedro A.', rating: 5, date: '25/01/2025', comment: 'A colaboração com Leica elevou demais a qualidade fotográfica. Sensor de 1" é brutal.' }]
   },
 
-  // ══════ ELETROS ══════
+  // ══════════════════════════════════════════
+  // NOTEBOOKS
+  // ══════════════════════════════════════════
   {
-    id:21,category:'eletros',brand:'Samsung',
-    name:'Geladeira Samsung French Door 460L Inox SpaceMax RF44A',
-    sku:'MLU0021',price:3799,oldPrice:7999,discount:52,rating:4.7,reviews:743,
-    images:[
-      'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=500&fit=crop&q=85'
+    id: 8, category: 'notebooks', brand: 'Apple',
+    name: 'MacBook Pro 14" M4 Pro 24GB 512GB SSD Preto Espacial',
+    sku: 'MLU0008', price: 14999, oldPrice: 22999, discount: 35,
+    rating: 4.9, reviews: 1432,
+    images: [
+      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202410?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1728916322613',
     ],
-    variants:['Inox','Branca'],
-    highlights:['460L de capacidade total','SpaceMax – parede fina mais espaço','Digital Inverter – econômico e silencioso','All-Around Cooling uniforme','Gaveta FlexZone 4 temperaturas','Frost Free total','Classificação A+++'],
-    description:'Samsung French Door com SpaceMax: isolamento de parede fina para maximizar espaço interno. Digital Inverter economiza até 46% de energia.',
-    specs:[['Capacidade','460L (296L+164L)'],['Tipo','French Door + FlexZone'],['Compressor','Digital Inverter (10 anos)'],['Energético','A+++ – 391kWh/ano'],['Dimensões','178×91×71cm'],['Tensão','Bivolt']],
-    reviewsData:[{user:'Lúcia M.',rating:5,date:'25/11/2024',comment:'Espaçosa demais. Temperatura uniforme. Silenciosíssima!'}]
+    variants: [
+      { label: 'Preto Espacial', color: '#1d1d1f', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202410?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1728916322613' },
+      { label: 'Prateado',       color: '#e3e4e6', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-silver-select-202410?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1728916322613' },
+    ],
+    highlights: ['Chip M4 Pro CPU 14 núcleos GPU 20 núcleos', '24GB memória unificada', 'SSD NVMe 512GB ultrarrápido', 'Liquid Retina XDR 14,2" 120Hz ProMotion', 'Até 24 horas de bateria', 'HDMI 2.1 + SD + 3× Thunderbolt 5', 'Thunderbolt 5 – 120Gb/s'],
+    description: 'MacBook Pro 14" com chip M4 Pro de nova geração. CPU 14 núcleos, GPU 20 núcleos, até 24 horas de bateria e conectividade Thunderbolt 5 com 120Gb/s. A escolha definitiva para profissionais.',
+    specs: [['Tela','14,2" Liquid Retina XDR 3024×1964px 120Hz'],['CPU','Apple M4 Pro (14 CPU / 20 GPU núcleos)'],['Memória','24GB unificada'],['Armazenamento','512GB NVMe'],['Bateria','até 24 horas'],['Portas','3× Thunderbolt 5, HDMI 2.1, SD, MagSafe 3'],['Sistema','macOS Sequoia'],['Peso','1,62kg']],
+    reviewsData: [{ user: 'Carolina F.', rating: 5, date: '02/12/2024', comment: 'M4 Pro é um salto enorme. Edição de vídeo RAW 8K sem soluços.' }, { user: 'Tiago L.', rating: 5, date: '28/11/2024', comment: 'Thunderbolt 5 com eGPU voou. 24h de bateria no dia a dia confirmado.' }]
   },
+
   {
-    id:22,category:'eletros',brand:'Philips',
-    name:'Aspirador Robô Philips HomeRun 7000 3000Pa Wi-Fi IA Câmera',
-    sku:'MLU0022',price:1399,oldPrice:3499,discount:60,rating:4.6,reviews:1243,
-    images:[
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop&q=85',
-      'https://images.unsplash.com/photo-1588347818036-c4b47f68f295?w=500&h=500&fit=crop&q=85'
+    id: 9, category: 'notebooks', brand: 'Dell',
+    name: 'Notebook Dell XPS 16 Core Ultra 9 32GB RTX 4070 OLED 16"',
+    sku: 'MLU0009', price: 12999, oldPrice: 20999, discount: 38,
+    rating: 4.9, reviews: 743,
+    images: [
+      'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-16-9640/media-gallery/silver/notebook-xps-16-9640-silver-gallery-3.psd?fmt=pjpeg&pscan=auto&scl=1&wid=800&hei=800&qlt=100,1&resMode=sharp2&size=800,800',
     ],
-    variants:['Preto','Branco'],
-    highlights:['Mapeamento IA por câmera visual','Sucção 3000Pa ultra-potente','Evita obstáculos com IA','Mopa integrada aspirar + lavar','120min autonomia por ciclo','App + Alexa + Google Home','Filtro HEPA 99,97%'],
-    description:'Philips HomeRun 7000: IA mapeia sua casa, evita obstáculos e limpa sistematicamente. Sucção 3000Pa + mopa integrada. Controle por app com mapa interativo.',
-    specs:[['Sucção','3000Pa'],['Mapeamento','Câmera visual com IA'],['Autonomia','120 minutos'],['Reservatório','500ml pó / 200ml água'],['Filtro','HEPA 99,97%'],['Conectividade','Wi-Fi + Alexa + Google'],['Altura','9,2cm']],
-    reviewsData:[{user:'Sandra B.',rating:5,date:'26/11/2024',comment:'Mapeia perfeitamente e desvia de tudo. Nunca mais passo aspirador!'}]
-  }
+    variants: [
+      { label: 'Prata Platina', color: '#c8c8c8', img: 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-16-9640/media-gallery/silver/notebook-xps-16-9640-silver-gallery-3.psd?fmt=pjpeg&pscan=auto&scl=1&wid=800&hei=800&qlt=100,1&resMode=sharp2&size=800,800' },
+    ],
+    highlights: ['Intel Core Ultra 9 185H 16 núcleos', 'NVIDIA GeForce RTX 4070 8GB', '32GB LPDDR5x 6400MHz', 'SSD 1TB PCIe Gen 4', 'Tela OLED 4K+ 16" 120Hz 100% DCI-P3', 'Bateria 99,5Wh carga 130W', 'Peso 1,96kg'],
+    description: 'Dell XPS 16 com tela OLED 4K+ 16" e 100% DCI-P3. Intel Core Ultra 9 + RTX 4070 para renderização 3D, edição 4K e AI workloads com Intel AI Boost.',
+    specs: [['Tela','16" OLED 3840×2400px 120Hz 100% DCI-P3'],['CPU','Intel Core Ultra 9 185H (16 núcleos)'],['RAM','32GB LPDDR5x 6400MHz'],['Armazenamento','1TB NVMe PCIe Gen 4'],['GPU','RTX 4070 8GB GDDR6'],['Bateria','99,5Wh – carga 130W USB-C'],['Sistema','Windows 11 Home'],['Peso','1,96kg']],
+    reviewsData: [{ user: 'André S.', rating: 5, date: '10/12/2024', comment: 'OLED 4K é uma obra de arte. Trabalho com Motion Design e nunca vi cores tão precisas.' }]
+  },
+
+  {
+    id: 10, category: 'notebooks', brand: 'Samsung',
+    name: 'Samsung Galaxy Book5 Pro 14" Intel Ultra 7 16GB OLED Preto',
+    sku: 'MLU0010', price: 8999, oldPrice: 13999, discount: 36,
+    rating: 4.8, reviews: 621,
+    images: [
+      'https://images.samsung.com/is/image/samsung/p6pim/br/np940xma-kb1br/gallery/br-galaxy-book5-pro-np940xma-np940xma-kb1br-thumb?$650_519_PNG$',
+    ],
+    variants: [
+      { label: 'Moonstone Gray', color: '#5a5a5a', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/np940xma-kb1br/gallery/br-galaxy-book5-pro-np940xma-np940xma-kb1br-thumb?$650_519_PNG$' },
+      { label: 'Platinum Silver', color: '#c8c8c8', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/np940xma-ks1br/gallery/br-galaxy-book5-pro-np940xma-np940xma-ks1br-thumb?$650_519_PNG$' },
+    ],
+    highlights: ['Intel Core Ultra 7 258V (4nm)', '16GB LPDDR5x', 'AMOLED 2K 14" 120Hz', 'SSD 512GB NVMe PCIe Gen 4', 'Até 25h de bateria', 'Galaxy AI com Copilot+', 'Peso 1,23kg ultraslim'],
+    description: 'Samsung Galaxy Book5 Pro: o notebook mais leve e fino da linha com tela AMOLED 2K 120Hz. Intel Core Ultra 7 com NPU para Galaxy AI e Copilot+. Autonomia de até 25 horas.',
+    specs: [['Tela','14" AMOLED 2880×1800px 120Hz'],['CPU','Intel Core Ultra 7 258V (4nm)'],['RAM','16GB LPDDR5x'],['Armazenamento','512GB NVMe Gen 4'],['Bateria','até 25 horas'],['Conectividade','Wi-Fi 6E, BT 5.3, TB4×2, USB-C, HDMI'],['Sistema','Windows 11 Home'],['Peso','1,23kg']],
+    reviewsData: [{ user: 'Patricia M.', rating: 5, date: '15/01/2025', comment: '1,23kg e bateria que dura o dia todo. AMOLED 120Hz linda. Melhor ultrabook.' }]
+  },
+
+  // ══════════════════════════════════════════
+  // SMART TVs
+  // ══════════════════════════════════════════
+  {
+    id: 11, category: 'tvs', brand: 'LG',
+    name: 'Smart TV LG OLED evo C4 65" 4K 120Hz Dolby Vision webOS 24',
+    sku: 'MLU0011', price: 5499, oldPrice: 9999, discount: 45,
+    rating: 4.9, reviews: 2876,
+    images: [
+      'https://www.lg.com/br/images/tvs/md08007749/gallery/medium01.jpg',
+    ],
+    variants: [
+      { label: '55"', color: '#444', img: 'https://www.lg.com/br/images/tvs/md08007749/gallery/medium01.jpg' },
+      { label: '65"', color: '#444', img: 'https://www.lg.com/br/images/tvs/md08007749/gallery/medium01.jpg' },
+      { label: '77"', color: '#444', img: 'https://www.lg.com/br/images/tvs/md08007749/gallery/medium01.jpg' },
+      { label: '83"', color: '#444', img: 'https://www.lg.com/br/images/tvs/md08007749/gallery/medium01.jpg' },
+    ],
+    highlights: ['Painel OLED evo – preto absoluto', 'Processador α9 Gen7 AI', 'Dolby Vision IQ + Dolby Atmos', '120Hz NVIDIA G-Sync', '4× HDMI 2.1 (48Gbps)', 'webOS 24 ThinQ AI', 'Input lag 1ms modo gamer'],
+    description: 'LG OLED evo C4: o melhor OLED do mercado com o novo processador α9 Gen7 AI. Imagem perfeita para filmes, jogos e esportes. 4× HDMI 2.1 e 1ms para PS5 e Xbox Series X.',
+    specs: [['Tamanho','65 pol.'],['Resolução','4K 3840×2160px'],['Painel','OLED evo'],['Taxa','120Hz G-Sync + FreeSync'],['HDR','Dolby Vision IQ, HDR10, HLG'],['Áudio','60W Dolby Atmos DTS:X'],['Smart TV','webOS 24, ThinQ AI, AirPlay 2, HomeKit'],['HDMI','4× HDMI 2.1 48Gbps']],
+    reviewsData: [{ user: 'Marcos V.', rating: 5, date: '05/11/2024', comment: 'PS5 no OLED C4 é outro nível. Preto absoluto + 120Hz = transcendental.' }, { user: 'Silvia T.', rating: 5, date: '01/11/2024', comment: 'Melhor TV que já vi. Cada detalhe em filmes HDR é impressionante.' }]
+  },
+
+  {
+    id: 12, category: 'tvs', brand: 'Samsung',
+    name: 'Smart TV Samsung OLED S90D 65" 4K 144Hz Neural Quantum',
+    sku: 'MLU0012', price: 6999, oldPrice: 11999, discount: 42,
+    rating: 4.8, reviews: 1243,
+    images: [
+      'https://images.samsung.com/is/image/samsung/p6pim/br/qe65s90daexzd/gallery/br-oled-s90d-qe65s90daexzd-thumb-539897046?$650_519_PNG$',
+    ],
+    variants: [
+      { label: '55"', color: '#333', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/qe65s90daexzd/gallery/br-oled-s90d-qe65s90daexzd-thumb-539897046?$650_519_PNG$' },
+      { label: '65"', color: '#333', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/qe65s90daexzd/gallery/br-oled-s90d-qe65s90daexzd-thumb-539897046?$650_519_PNG$' },
+      { label: '77"', color: '#333', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/qe65s90daexzd/gallery/br-oled-s90d-qe65s90daexzd-thumb-539897046?$650_519_PNG$' },
+    ],
+    highlights: ['Painel OLED Samsung QD-OLED', 'Neural Quantum Processor 4K', '144Hz ultrasuave', 'Tela One Design sem bordas visíveis', 'HDR10+, Dolby Vision', 'Gaming Hub integrado', '4× HDMI 2.1'],
+    description: 'Samsung OLED S90D com QD-OLED: combina os pontos quânticos Samsung com a auto-iluminação OLED para cores mais vivas e brilho mais alto que OLEDs tradicionais. 144Hz para gaming impecável.',
+    specs: [['Tamanho','65 pol.'],['Resolução','4K 3840×2160px'],['Painel','QD-OLED'],['Taxa','144Hz VRR'],['HDR','HDR10+, Dolby Vision, HLG'],['Áudio','60W OTS+'],['Smart TV','Tizen OS, Gaming Hub, Bixby, Alexa'],['HDMI','4× HDMI 2.1']],
+    reviewsData: [{ user: 'Eduardo B.', rating: 5, date: '18/11/2024', comment: 'QD-OLED é a melhor tecnologia de TV. Cores mais vivas que OLED convencional!' }]
+  },
+
+  // ══════════════════════════════════════════
+  // GAMES
+  // ══════════════════════════════════════════
+  {
+    id: 13, category: 'games', brand: 'Sony',
+    name: 'PlayStation 5 Pro Console 2TB SSD + Controle DualSense Branco',
+    sku: 'MLU0013', price: 4999, oldPrice: 7499, discount: 33,
+    rating: 4.9, reviews: 3892,
+    images: [
+      'https://gmedia.playstation.com/is/image/SIEPDC/ps5-pro-product-thumbnail-01-en-14oct24?$facebook$',
+    ],
+    variants: [
+      { label: 'Branco', color: '#f0f0f0', img: 'https://gmedia.playstation.com/is/image/SIEPDC/ps5-pro-product-thumbnail-01-en-14oct24?$facebook$' },
+    ],
+    highlights: ['GPU 67% mais rápida que PS5 original', 'SSD 2TB ultrarrápido', 'PlayStation Spectral Super Resolution (PSSR)', 'Ray Tracing aprimorado', 'Wi-Fi 7', 'DualSense feedback tátil + gatilhos adaptativos', 'Retrocompatível com PS4'],
+    description: 'PlayStation 5 Pro: a versão definitiva do PS5 com GPU 67% mais rápida, PSSR para upscaling por IA e SSD 2TB. Ray tracing aprimorado e Wi-Fi 7 para gaming sem compromisso.',
+    specs: [['CPU','AMD Zen 2 8 núcleos 3,85GHz'],['GPU','AMD RDNA (45 CUs) – 67% mais rápida'],['RAM','16GB GDDR6'],['Armazenamento','SSD NVMe 2TB'],['Resolução','8K / 4K 60/120fps'],['Wi-Fi','Wi-Fi 7 (802.11be)'],['Dimensões','358×80×216mm']],
+    reviewsData: [{ user: 'Felipe G.', rating: 5, date: '15/11/2024', comment: 'PSSR upscaling é impressionante. Spider-Man 2 em modo Fidelidade + 60fps é inacreditável!' }, { user: 'Juliana K.', rating: 5, date: '10/11/2024', comment: 'GPU 67% mais rápida é perceptível em todos os jogos. Compra que não me arrependo.' }]
+  },
+
+  {
+    id: 14, category: 'games', brand: 'Microsoft',
+    name: 'Xbox Series X Console 1TB SSD 4K 120fps + Game Pass 3 meses',
+    sku: 'MLU0014', price: 2999, oldPrice: 4999, discount: 40,
+    rating: 4.8, reviews: 2671,
+    images: [
+      'https://news.xbox.com/en-us/wp-content/uploads/sites/2/2020/12/XboxSeriesX_Consolealone.png',
+    ],
+    variants: [
+      { label: 'Preto', color: '#1a1a1a', img: 'https://news.xbox.com/en-us/wp-content/uploads/sites/2/2020/12/XboxSeriesX_Consolealone.png' },
+    ],
+    highlights: ['12 teraflops – console mais potente já criado', 'SSD NVMe 1TB Xbox Velocity', 'Quick Resume múltiplos jogos', 'Retrocompatível com 4 gerações Xbox', 'Auto HDR + FPS Boost automáticos', 'Game Pass Ultimate 3 meses incluso', 'HDMI 2.1 120fps 4K'],
+    description: 'Xbox Series X com Game Pass Ultimate 3 meses incluso. 12 teraflops, Quick Resume, 4K 120fps e biblioteca de milhares de jogos com melhorias automáticas de HDR e framerate.',
+    specs: [['CPU','AMD Zen 2 8 núcleos 3,8GHz'],['GPU','AMD RDNA 2 – 12 TF'],['RAM','16GB GDDR6'],['Armazenamento','SSD NVMe 1TB expansível'],['Resolução','até 8K upscaling / 120fps'],['Mídia','UHD Blu-ray 4K'],['Conectividade','HDMI 2.1, USB×3, Wi-Fi 6, BT 5.0']],
+    reviewsData: [{ user: 'Rodrigo C.', rating: 5, date: '20/11/2024', comment: 'Quick Resume é funcionalidade que não vivo sem. Game Pass é custo-benefício absurdo.' }]
+  },
+
+  {
+    id: 15, category: 'games', brand: 'Nintendo',
+    name: 'Nintendo Switch 2 Edição Standard + Controles Joy-Con 2',
+    sku: 'MLU0015', price: 2799, oldPrice: 3999, discount: 30,
+    rating: 4.9, reviews: 4231,
+    images: [
+      'https://assets.nintendo.com/image/upload/c_fill,f_auto,q_auto,w_1200/ncom/en_US/switch-2/switch-2-hardware-images/switch-2-dock-joycon2-white-hero',
+    ],
+    variants: [
+      { label: 'Branco', color: '#f5f5f5', img: 'https://assets.nintendo.com/image/upload/c_fill,f_auto,q_auto,w_800/ncom/en_US/switch-2/switch-2-hardware-images/switch-2-dock-joycon2-white-hero' },
+      { label: 'Preto',  color: '#1a1a1a', img: 'https://assets.nintendo.com/image/upload/c_fill,f_auto,q_auto,w_800/ncom/en_US/switch-2/switch-2-hardware-images/switch-2-dock-joycon2-black-hero' },
+    ],
+    highlights: ['Tela LCD 7,9" 1080p portátil', 'Saída 4K na TV via HDMI 2.0', 'Joy-Con 2 com botão C (mouse)', 'GameChat integrado para chat de voz', 'Retrocompat. com maioria dos jogos Switch', 'Mais potente que Switch original', 'Dock incluído com porta USB-C'],
+    description: 'Nintendo Switch 2: maior, mais potente e com novos Joy-Con 2 que funcionam como mouse na superfície. Tela 1080p portátil, 4K na TV e retrocompatibilidade com maioria dos jogos Switch.',
+    specs: [['Tela','7,9" LCD 1920×1080px portátil'],['Saída TV','4K via HDMI 2.0'],['Armazenamento','256GB + microSDXC'],['Joy-Con 2','novo botão C + funciona como mouse'],['Conectividade','Wi-Fi 6, Bluetooth 5.0, USB-C'],['Peso','approx. 400g sem Joy-Con']],
+    reviewsData: [{ user: 'Sofia B.', rating: 5, date: '10/04/2025', comment: 'Joy-Con 2 como mouse é genial. Mario Kart World é incrível em 4K!' }]
+  },
+
+  // ══════════════════════════════════════════
+  // ÁUDIO
+  // ══════════════════════════════════════════
+  {
+    id: 16, category: 'audio', brand: 'Sony',
+    name: 'Fone Sony WH-1000XM5 Bluetooth ANC 30h Hi-Res Audio',
+    sku: 'MLU0016', price: 1399, oldPrice: 2499, discount: 44,
+    rating: 4.9, reviews: 5312,
+    images: [
+      'https://www.sony.com.br/image/5d02da5df552836db894cead8a68f056?fmt=pjpeg&wid=800&bgcolor=FFFFFF',
+    ],
+    variants: [
+      { label: 'Preto',  color: '#1a1a1a', img: 'https://www.sony.com.br/image/5d02da5df552836db894cead8a68f056?fmt=pjpeg&wid=800&bgcolor=FFFFFF' },
+      { label: 'Prata',  color: '#c8c8c8', img: 'https://www.sony.com.br/image/eb348a23cd6b0f557aabc76e5a47ec3d?fmt=pjpeg&wid=800&bgcolor=FFFFFF' },
+    ],
+    highlights: ['Melhor ANC do mercado – 8 microfones', '2 processadores V1 + QN1', 'Drivers 30mm exclusivos',  '30h bateria com ANC', 'Carga rápida: 3min = 3h', 'LDAC hi-res 990kbps', 'Speak-to-Chat, Multi-point'],
+    description: 'Sony WH-1000XM5: 5 anos consecutivo como melhor fone ANC do mundo. 8 microfones e dois processadores V1 + QN1 para silêncio total. LDAC transmite áudio hi-res 3× mais detalhado.',
+    specs: [['Driver','30mm circular'],['Frequência','4Hz – 40kHz'],['ANC','8 microfones + processadores V1+QN1'],['Bateria','30h ANC / 40h sem ANC'],['Carga','USB-C 3min=3h'],['Codecs','LDAC, AAC, SBC'],['Bluetooth','5.2 Multi-point'],['Peso','250g']],
+    reviewsData: [{ user: 'Amanda V.', rating: 5, date: '14/11/2024', comment: 'Em voos internacionais o ANC cancela o motor completamente. Magnífico.' }, { user: 'Henrique D.', rating: 5, date: '07/11/2024', comment: 'Trabalho em home office com filhos. Coloco o fone e entro em outro mundo.' }]
+  },
+
+  {
+    id: 17, category: 'audio', brand: 'Apple',
+    name: 'AirPods Pro 2ª Geração USB-C ANC Áudio Espacial 30h',
+    sku: 'MLU0017', price: 1699, oldPrice: 2999, discount: 43,
+    rating: 4.9, reviews: 8234,
+    images: [
+      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MXK73?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1724911735726',
+    ],
+    variants: [
+      { label: 'Branco (USB-C)', color: '#f5f5f0', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MXK73?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1724911735726' },
+    ],
+    highlights: ['Chip H2 – ANC 2× mais potente', 'Modo Transparência Adaptativa', 'Áudio Espacial Personalizado', '30h total com case USB-C', 'IPX4 fone + IPX4 case', 'Volume adaptativo automático', 'Encontrar de precisão com iPhone'],
+    description: 'AirPods Pro 2ª Geração com chip H2 e case USB-C. ANC duas vezes mais potente, Modo Transparência Adaptativa, Áudio Espacial Personalizado e 30h de autonomia total.',
+    specs: [['Chip','Apple H2'],['Bateria','6h (fone) + 24h (case) = 30h'],['Resistência','IPX4 fone + IPX4 case'],['Conectividade','Bluetooth 5.3'],['Case','USB-C + MagSafe + Apple Watch'],['Peso','5,3g/fone + 50,3g case']],
+    reviewsData: [{ user: 'Tatiana R.', rating: 5, date: '21/11/2024', comment: 'Melhor TWS que já tive de qualquer marca. ANC fenomenal.' }, { user: 'Gustavo P.', rating: 5, date: '14/11/2024', comment: 'Transparência Adaptativa é mágica. Parece que não tem nada no ouvido.' }]
+  },
+
+  // ══════════════════════════════════════════
+  // WEARABLES
+  // ══════════════════════════════════════════
+  {
+    id: 18, category: 'wearables', brand: 'Apple',
+    name: 'Apple Watch Series 10 GPS 46mm Alumínio Jet Black',
+    sku: 'MLU0018', price: 3499, oldPrice: 5499, discount: 36,
+    rating: 4.9, reviews: 3421,
+    images: [
+      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-case-unselect-gallery-2-202409?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1724162916755',
+    ],
+    variants: [
+      { label: 'Jet Black 46mm', color: '#1d1d1f', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-case-unselect-gallery-2-202409?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1724162916755' },
+      { label: 'Rose Gold 46mm', color: '#d4a090', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-rosegold-unselect-gallery-2-202409?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1724162916755' },
+      { label: 'Silver 42mm',    color: '#e3e4e6', img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-silver-unselect-gallery-2-202409?wid=800&hei=800&fmt=jpeg&qlt=95&.v=1724162916755' },
+    ],
+    highlights: ['Design mais fino de todos os tempos (9,7mm)', 'Chip S10 mais rápido', 'Tela Super Retina XDR maior', 'Treino de mergulho + apneia', 'ECG + SpO2 + temperatura', 'Detecção acidente e queda', 'Carregamento rápido USB-C'],
+    description: 'Apple Watch Series 10: o mais fino de todos, 9,7mm de espessura. Tela maior, chip S10 mais rápido, novo recurso de mergulho com rastreamento de apneia e algoritmo atualizado de detecção de sono.',
+    specs: [['Tamanho','46mm'],['Chip','S10 SiP'],['Espessura','9,7mm – mais fino'],['Tela','LTPO OLED Always-On mais brilhante'],['GPS','L1+L5 Dual-band'],['Sensores','ECG, SpO2, Temperatura, Profundidade'],['Bateria','18h / 36h Low Power'],['Resistência','WR50 + certificação de mergulho']],
+    reviewsData: [{ user: 'Isabela F.', rating: 5, date: '28/10/2024', comment: 'Mais fino e mais bonito. Rastreamento de mergulho é perfeito para minhas aulas.' }]
+  },
+
+  {
+    id: 19, category: 'wearables', brand: 'Samsung',
+    name: 'Galaxy Watch Ultra 47mm 4G LTE Titanium White',
+    sku: 'MLU0019', price: 2999, oldPrice: 5499, discount: 45,
+    rating: 4.8, reviews: 1432,
+    images: [
+      'https://images.samsung.com/is/image/samsung/p6pim/br/sm-l705fzmazto/gallery/br-galaxy-watch-ultra-sm-l705-sm-l705fzmazto-thumb-541209088?$650_519_PNG$',
+    ],
+    variants: [
+      { label: 'Titanium White',  color: '#e8e8e6', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/sm-l705fzmazto/gallery/br-galaxy-watch-ultra-sm-l705-sm-l705fzmazto-thumb-541209088?$650_519_PNG$' },
+      { label: 'Titanium Black',  color: '#2a2a2a', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/sm-l705fzkszto/gallery/br-galaxy-watch-ultra-sm-l705-sm-l705fzkszto-thumb-541209080?$650_519_PNG$' },
+      { label: 'Titanium Silver', color: '#c8c8c8', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/sm-l705fzsszto/gallery/br-galaxy-watch-ultra-sm-l705-sm-l705fzsszto-thumb-541209084?$650_519_PNG$' },
+    ],
+    highlights: ['Estrutura Titanium ultrarresistente', 'Tela Super AMOLED 1,5" 480nits pico 3000nits', 'Monitoramento de mergulho até 100m', 'ECG + pressão arterial + SpO2', 'Bateria 590mAh até 60h modo longa duração', '4G LTE independente do celular', 'MIL-STD-810U resistência extrema'],
+    description: 'Galaxy Watch Ultra: o relógio de desempenho máximo da Samsung. Estrutura em Titanium, monitoramento de mergulho até 100m, bateria de 60h e 4G LTE independente. Pico de brilho de 3000nits legível em qualquer luz.',
+    specs: [['Tamanho','47mm'],['Material','Titanium Grade 4'],['Tela','Super AMOLED 1,5" 480×480px 3000nits'],['Bateria','590mAh – até 60h'],['Resistência','10ATM + MIL-STD-810U'],['Conectividade','4G LTE, Wi-Fi 5, BT 5.3, NFC'],['Armazenamento','32GB'],['Sistema','Wear OS + One UI Watch 6']],
+    reviewsData: [{ user: 'Carlos B.', rating: 5, date: '20/07/2024', comment: 'O Galaxy Watch Ultra é o melhor relógio que já usei. Titanium, 4G, mergulho. Perfeito.' }]
+  },
+
+  // ══════════════════════════════════════════
+  // ELETROS
+  // ══════════════════════════════════════════
+  {
+    id: 20, category: 'eletros', brand: 'Samsung',
+    name: 'Geladeira Samsung French Door 460L Inox SpaceMax A+++',
+    sku: 'MLU0020', price: 4299, oldPrice: 7999, discount: 46,
+    rating: 4.7, reviews: 1243,
+    images: [
+      'https://images.samsung.com/is/image/samsung/p6pim/br/rf44a5202s9-bz/gallery/br-rf44a5202s9-bz-front-open?$650_519_PNG$',
+    ],
+    variants: [
+      { label: 'Inox',   color: '#b0b0b0', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/rf44a5202s9-bz/gallery/br-rf44a5202s9-bz-front-open?$650_519_PNG$' },
+      { label: 'Branca', color: '#f5f5f5', img: 'https://images.samsung.com/is/image/samsung/p6pim/br/rf44a5202ww-bz/gallery/br-rf44a5202ww-bz-front?$650_519_PNG$' },
+    ],
+    highlights: ['460L capacidade total', 'SpaceMax – parede fina mais espaço', 'Digital Inverter – 10 anos garantia', 'All-Around Cooling uniforme', 'Gaveta FlexZone 4 temperaturas', 'Frost Free total', 'Classe A+++'],
+    description: 'Samsung French Door 460L com SpaceMax e Digital Inverter. Isolamento de parede fina para mais espaço interno, resfriamento uniforme All-Around e gaveta FlexZone com 4 configurações de temperatura.',
+    specs: [['Capacidade','460L (296L + 164L)'],['Compressor','Digital Inverter (10 anos garantia)'],['Classe Energética','A+++ – 391kWh/ano'],['Tipo','French Door + FlexZone'],['Dimensões','178×91×71cm'],['Tensão','Bivolt automático'],['Garantia','1 ano fabricante + 10 anos compressor']],
+    reviewsData: [{ user: 'Lúcia R.', rating: 5, date: '10/11/2024', comment: 'Espaçosa, silenciosíssima e temperatura uniforme em todos os compartimentos!' }]
+  },
+
+  {
+    id: 21, category: 'eletros', brand: 'Philips',
+    name: 'Aspirador Robô Philips HomeRun 7000 3000Pa Wi-Fi + Estação Auto-Esvaziamento',
+    sku: 'MLU0021', price: 2499, oldPrice: 4999, discount: 50,
+    rating: 4.7, reviews: 987,
+    images: [
+      'https://www.philips.com.br/c-dam/b2c/consumer/domestic-appliances/robot-vacuum/homerun-3000/PSG/XU3110_01_PS_Global-001.jpg',
+    ],
+    variants: [
+      { label: 'Preto', color: '#1a1a1a', img: 'https://www.philips.com.br/c-dam/b2c/consumer/domestic-appliances/robot-vacuum/homerun-3000/PSG/XU3110_01_PS_Global-001.jpg' },
+    ],
+    highlights: ['Mapeamento IA por câmera visual', 'Sucção 3000Pa ultra-potente', 'Estação auto-esvaziamento 60 dias', 'Mopa integrada – aspira + lava', 'Autonomia 120min por ciclo', 'App + Alexa + Google Home', 'Filtro HEPA 99,97% alérgenos'],
+    description: 'Philips HomeRun 7000 com estação de auto-esvaziamento: 60 dias sem precisar esvaziar. IA por câmera visual, sucção 3000Pa, mopa integrada e autonomia de 120 minutos.',
+    specs: [['Sucção','3000Pa'],['Mapeamento','Câmera visual com IA'],['Autonomia','120 minutos'],['Reservatório','500ml pó / 200ml água'],['Estação','auto-esvaziamento 60 dias'],['Filtro','HEPA 99,97%'],['Conectividade','Wi-Fi + Alexa + Google Home']],
+    reviewsData: [{ user: 'Sandra B.', rating: 5, date: '05/11/2024', comment: 'Nunca mais passo aspirador! Mopa molhada funciona muito bem no piso.' }]
+  },
+
+  // ══════════════════════════════════════════
+  // CÂMERAS
+  // ══════════════════════════════════════════
+  {
+    id: 22, category: 'cameras', brand: 'Sony',
+    name: 'Câmera Sony Alpha ZV-E10 II APS-C 26MP Vlog 4K 120fps',
+    sku: 'MLU0022', price: 3499, oldPrice: 5999, discount: 42,
+    rating: 4.8, reviews: 1243,
+    images: [
+      'https://www.sony.com.br/image/6b1f88a0c74e2c4c9ce12c76c9f33a08?fmt=pjpeg&wid=800&bgcolor=FFFFFF',
+    ],
+    variants: [
+      { label: 'Preta', color: '#1a1a1a', img: 'https://www.sony.com.br/image/6b1f88a0c74e2c4c9ce12c76c9f33a08?fmt=pjpeg&wid=800&bgcolor=FFFFFF' },
+      { label: 'Branca', color: '#f0f0f0', img: 'https://www.sony.com.br/image/a8a74d5e0c6f9a8b3d2e1f4c7b0a5d3e?fmt=pjpeg&wid=800&bgcolor=FFFFFF' },
+    ],
+    highlights: ['Sensor APS-C Exmor R 26.1MP backlit', '4K 60fps / 4K 120fps super-slow', 'Eye AF em tempo real (humanos + animais)', 'Vídeo vertical nativo para Reels/TikTok', 'Microfone 3 cápsulas direcional', 'Tela touch articulada 3"', 'Compatível todas as lentes Sony E-mount'],
+    description: 'Sony ZV-E10 II: a câmera vlog de segunda geração com sensor BSI 26MP, 4K 120fps para slow motion e modo vídeo vertical nativo. AF em tempo real para olhos humanos e animais.',
+    specs: [['Sensor','APS-C Exmor R BSI 26.1MP'],['Vídeo','4K 60fps / 4K 120fps / 1080p 240fps'],['AF','Eye AF Tempo Real – humanos + animais'],['Microfone','3 cápsulas + entrada P2'],['Tela','3" touch articulada'],['ISO','100–51200'],['Bateria','NP-FW50 – 340 disparos'],['Peso','291g (corpo)']],
+    reviewsData: [{ user: 'Bruna F.', rating: 5, date: '20/12/2024', comment: '4K 120fps é absurdo para slow motion. O modo vertical nativo é um diferencial enorme para criadores.' }]
+  },
 ];
 
-// ── CART ──────────────────────────────────────────────────
+// ══════════════════════════════════════════
+// CART
+// ══════════════════════════════════════════
 let cart = JSON.parse(localStorage.getItem('magaluCart') || '[]');
 function saveCart() { localStorage.setItem('magaluCart', JSON.stringify(cart)); }
 
@@ -358,7 +473,7 @@ function updateCartBadge() {
     b.style.display = total > 0 ? 'flex' : 'none';
   });
 }
-function openCart() { document.getElementById('cartSidebar')?.classList.add('open'); document.getElementById('cartOverlay')?.classList.add('open'); }
+function openCart()  { document.getElementById('cartSidebar')?.classList.add('open');    document.getElementById('cartOverlay')?.classList.add('open'); }
 function closeCart() { document.getElementById('cartSidebar')?.classList.remove('open'); document.getElementById('cartOverlay')?.classList.remove('open'); }
 
 function renderCart() {
@@ -371,14 +486,15 @@ function renderCart() {
   }
   el.innerHTML = cart.map(item => `
     <div class="cart-item">
+      ${item.img ? `<img src="${item.img}" style="width:52px;height:52px;object-fit:contain;border-radius:6px;background:#f5f5f5;flex-shrink:0">` : ''}
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
         <div class="cart-item-qty">
-          <button onclick="changeQty('${item.name.replace(/'/g, "\\'")}', -1)">−</button>
+          <button onclick="changeQty('${item.name.replace(/'/g,"\\'")}', -1)">−</button>
           <span>${item.qty}</span>
-          <button onclick="changeQty('${item.name.replace(/'/g, "\\'")}', 1)">+</button>
-          <button class="cart-remove" onclick="removeFromCart('${item.name.replace(/'/g, "\\'")}')">🗑</button>
+          <button onclick="changeQty('${item.name.replace(/'/g,"\\'")}', 1)">+</button>
+          <button class="cart-remove" onclick="removeFromCart('${item.name.replace(/'/g,"\\'")}')">🗑</button>
         </div>
       </div>
     </div>`).join('');
@@ -386,48 +502,101 @@ function renderCart() {
   footer.innerHTML = `
     <div class="cart-total-row"><span>Subtotal:</span><strong>R$ ${total.toFixed(2).replace('.', ',')}</strong></div>
     <div class="cart-total-row pix"><span>💚 No Pix (-5%):</span><strong>R$ ${(total * 0.95).toFixed(2).replace('.', ',')}</strong></div>
-    <button class="btn-checkout" onclick="alert('✅ Compra realizada com sucesso!\\nObrigado por comprar no Magalu!')">Finalizar Compra</button>`;
+    <button class="btn-checkout" onclick="alert('✅ Compra realizada!\\nObrigado por comprar no Magalu!')">Finalizar Compra</button>`;
 }
 
-// ── RENDER PRODUCTS ───────────────────────────────────────
+// ══════════════════════════════════════════
+// RENDER PRODUCTS — com seletor de cor + troca de imagem
+// ══════════════════════════════════════════
 function renderProducts(list) {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
-  grid.innerHTML = list.map(p => `
-    <div class="product-card" onclick="window.location.href='produto.html?id=${p.id}'">
-      <div class="product-badge">-${p.discount}%</div>
-      <button class="product-fav" onclick="event.stopPropagation();this.classList.toggle('active');this.textContent=this.classList.contains('active')?'♥':'♡'">♡</button>
-      <div class="product-img-wrap">
-        <img
-          src="${p.images[0]}"
-          alt="${p.name}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='https://picsum.photos/seed/prod${p.id}/300/300'">
-      </div>
-      <div class="product-info">
-        <div class="product-brand">${p.brand}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5-Math.floor(p.rating))} <span>(${p.reviews.toLocaleString()})</span></div>
-        <div class="product-price-old">De: R$ ${p.oldPrice.toFixed(2).replace('.', ',')}</div>
-        <div class="product-price">R$ ${p.price.toFixed(2).replace('.', ',')}</div>
-        <div class="product-installment">12x R$ ${(p.price/12).toFixed(2).replace('.', ',')} s/juros</div>
-        <div class="product-pix">💚 R$ ${(p.price*0.95).toFixed(2).replace('.', ',')} no Pix</div>
-        <button class="product-buy"
-          onclick="event.stopPropagation();
-            addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${p.images[0]}');
-            this.textContent='✓ Adicionado';
-            this.style.background='#27ae60';
-            setTimeout(()=>{this.textContent='Comprar';this.style.background=''},1600)">
-          Comprar
-        </button>
-      </div>
-    </div>`).join('');
+
+  grid.innerHTML = list.map(p => {
+    const isColorVariant = p.variants && p.variants[0] && p.variants[0].color;
+    const variantHTML = isColorVariant
+      ? `<div class="color-variants" id="cv-${p.id}">
+          ${p.variants.map((v, i) => `
+            <button
+              class="color-dot ${i === 0 ? 'active' : ''}"
+              title="${v.label}"
+              style="background:${v.color};${v.color === '#f5f5f0' || v.color === '#e3e4e6' || v.color === '#f0f0f0' || v.color === '#e8e8e8' || v.color === '#f0ede8' ? 'border:2px solid #ccc;' : 'border:2px solid transparent;'}"
+              onclick="event.stopPropagation();selectVariant(${p.id},${i},'${v.img.replace(/'/g,"\\'")}','${v.label}')">
+            </button>`).join('')}
+         </div>`
+      : '';
+
+    return `
+      <div class="product-card" id="card-${p.id}" onclick="window.location.href='produto.html?id=${p.id}'">
+        <div class="product-badge">-${p.discount}%</div>
+        <button class="product-fav" onclick="event.stopPropagation();this.classList.toggle('active');this.textContent=this.classList.contains('active')?'♥':'♡'">♡</button>
+        <div class="product-img-wrap">
+          <img
+            id="pimg-${p.id}"
+            src="${p.images[0]}"
+            alt="${p.name}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/300x300/f5f5f5/999?text=${encodeURIComponent(p.brand)}'">
+        </div>
+        <div class="product-info">
+          <div class="product-brand">${p.brand}</div>
+          <div class="product-name" id="pname-${p.id}">${p.name}</div>
+          ${variantHTML}
+          <div class="product-stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5-Math.floor(p.rating))} <span>(${p.reviews.toLocaleString()})</span></div>
+          <div class="product-price-old">De: R$ ${p.oldPrice.toFixed(2).replace('.', ',')}</div>
+          <div class="product-price">R$ ${p.price.toFixed(2).replace('.', ',')}</div>
+          <div class="product-installment">12x R$ ${(p.price/12).toFixed(2).replace('.', ',')} s/juros</div>
+          <div class="product-pix">💚 R$ ${(p.price*0.95).toFixed(2).replace('.', ',')} no Pix</div>
+          <button class="product-buy" id="pbuy-${p.id}"
+            onclick="event.stopPropagation();
+              addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},document.getElementById('pimg-${p.id}').src);
+              this.textContent='✓ Adicionado';
+              this.style.background='#27ae60';
+              setTimeout(()=>{this.textContent='Comprar';this.style.background=''},1600)">
+            Comprar
+          </button>
+        </div>
+      </div>`;
+  }).join('');
 }
 
+// Troca de imagem ao selecionar cor
+function selectVariant(productId, variantIndex, imgUrl, label) {
+  // Troca a imagem principal do card
+  const imgEl = document.getElementById(`pimg-${productId}`);
+  if (imgEl) {
+    imgEl.style.opacity = '0';
+    imgEl.style.transition = 'opacity 0.2s';
+    setTimeout(() => {
+      imgEl.src = imgUrl;
+      imgEl.style.opacity = '1';
+    }, 150);
+  }
+  // Atualiza o nome para mostrar a cor selecionada
+  const nameEl = document.getElementById(`pname-${productId}`);
+  if (nameEl) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    if (product) {
+      const baseName = product.name;
+      nameEl.textContent = `${baseName} – ${label}`;
+    }
+  }
+  // Marca o dot ativo
+  const container = document.getElementById(`cv-${productId}`);
+  if (container) {
+    container.querySelectorAll('.color-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === variantIndex);
+    });
+  }
+}
+
+// ══════════════════════════════════════════
+// FILTER / SEARCH
+// ══════════════════════════════════════════
 function filterCategory(cat) {
   const list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
   renderProducts(list.length ? list : PRODUCTS);
-  setTimeout(() => document.getElementById('productsGrid')?.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+  setTimeout(() => document.getElementById('productsGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 }
 
 function doSearch() {
@@ -439,10 +608,12 @@ function doSearch() {
     p.category.toLowerCase().includes(q)
   );
   renderProducts(res.length ? res : PRODUCTS);
-  setTimeout(() => document.getElementById('productsGrid')?.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+  setTimeout(() => document.getElementById('productsGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 }
 
-// ── HERO ──────────────────────────────────────────────────
+// ══════════════════════════════════════════
+// HERO CAROUSEL
+// ══════════════════════════════════════════
 let slideIdx = 0;
 const SLIDE_COUNT = 4;
 function changeSlide(dir) { goSlide((slideIdx + dir + SLIDE_COUNT) % SLIDE_COUNT); }
@@ -453,21 +624,25 @@ function goSlide(n) {
   document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === slideIdx));
 }
 
-// ── COUNTDOWN ─────────────────────────────────────────────
+// ══════════════════════════════════════════
+// COUNTDOWN
+// ══════════════════════════════════════════
 function startCountdown() {
   let end = parseInt(localStorage.getItem('cdEnd') || '0');
-  if (!end || end < Date.now()) { end = Date.now() + 6*3600*1000; localStorage.setItem('cdEnd', end); }
+  if (!end || end < Date.now()) { end = Date.now() + 6 * 3600 * 1000; localStorage.setItem('cdEnd', end); }
   setInterval(() => {
     const diff = Math.max(0, end - Date.now());
-    const h = String(Math.floor(diff/3600000)).padStart(2,'0');
-    const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-    const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+    const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+    const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
     const el = document.getElementById('countdown');
     if (el) el.textContent = `${h}:${m}:${s}`;
   }, 1000);
 }
 
-// ── INIT ──────────────────────────────────────────────────
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
   renderCart();
@@ -476,8 +651,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(() => changeSlide(1), 5000);
   document.getElementById('searchInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
   document.getElementById('cepInput')?.addEventListener('input', e => {
-    let v = e.target.value.replace(/\D/g,'');
-    if (v.length > 5) v = v.slice(0,5)+'-'+v.slice(5,8);
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5, 8);
     e.target.value = v;
   });
 });
