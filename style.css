@@ -356,24 +356,29 @@ footer { background: var(--white); border-top: 1px solid var(--gray-border); pad
 .btn-checkout { background: var(--blue); color: var(--white); border: none; border-radius: 8px; width: 100%; padding: 14px; font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 12px; font-family: 'Nunito', sans-serif; transition: background .2s; }
 .btn-checkout:hover { background: var(--blue-dark); }
 
-/* ─── CHATBOT (Lu do Magalu) ──────────────────────────── */
+/* ─── CHATBOT WIDGET (Lu do Magalu) ──────────────────── */
+.chatbot-widget {
+  position: fixed; bottom: 20px; right: 24px;
+  display: flex; flex-direction: column; align-items: center;
+  z-index: 150; gap: 0;
+}
+.lu-avatar {
+  width: 80px; height: 110px;
+  object-fit: contain; object-position: top center;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.35));
+  transition: transform .25s ease;
+  pointer-events: none;
+}
+.chatbot-widget:hover .lu-avatar { transform: translateY(-6px) scale(1.05); }
 .chatbot-btn {
-  position: fixed; bottom: 0; left: 24px;
-  background: var(--blue); color: var(--white); border: none; border-radius: 16px 16px 0 0;
-  padding: 0 20px 10px; font-size: 13px; font-weight: 800; cursor: pointer;
-  display: flex; flex-direction: column; align-items: center; gap: 0;
-  box-shadow: 0 -4px 20px rgba(0,134,255,.35); z-index: 150;
-  font-family: 'Nunito', sans-serif; transition: transform .2s, box-shadow .2s;
-  min-width: 100px;
+  background: var(--blue); color: var(--white); border: none; border-radius: 50px;
+  padding: 9px 20px; font-size: 13px; font-weight: 800; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 4px 16px rgba(0,134,255,.45);
+  font-family: 'Nunito', sans-serif; transition: background .2s, box-shadow .2s;
+  white-space: nowrap;
 }
-.chatbot-btn:hover { transform: translateY(-6px); box-shadow: 0 -8px 28px rgba(0,134,255,.5); }
-.chatbot-btn img {
-  width: 72px; height: 96px;
-  object-fit: contain; object-position: bottom;
-  margin-bottom: 2px; margin-top: -8px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,.25));
-}
-.chatbot-btn span { font-size: 11px; line-height: 1.3; }
+.chatbot-btn:hover { background: var(--blue-dark); box-shadow: 0 6px 22px rgba(0,134,255,.6); }
 
 /* ─── PRODUCT PAGE ────────────────────────── */
 .product-page { max-width: 1280px; margin: 0 auto; padding: 16px; }
